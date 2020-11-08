@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>janceChun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="janceChun">
+<meta property="og:url" content="https://jancechun.github.io/janceChun/index.html">
+<meta property="og:site_name" content="janceChun">
+<meta property="og:locale">
+<meta property="article:author" content="janceChun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <!-- <a href="index.html" id="logo">janceChun</a> -->
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="index.html">Home</a>
+        
+          <a class="main-nav-link" href="/janceChun/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/janceChun/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jancechun.github.io/janceChun"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018-04-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2018/04/03/2018-04-03/" class="article-date">
+  <time datetime="2018-04-02T16:00:00.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2018/04/03/2018-04-03/">js 事件复习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="js事件"><a href="#js事件" class="headerlink" title="js事件"></a>js事件</h1><p><em>DOM</em>文档对象模型<br><em>事件</em>用户或浏览器执行的动作<br><em>事件处理程序</em>（事件监听器）响应某个<em>事件</em>的<em>函数</em></p>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
+<li><p>事件流<br><img src="js%E4%BA%8B%E4%BB%B6/A66B12D0-F87F-49FA-897F-1D4C3F5716F6.png"></p>
+</li>
+<li><p>事件类型</p>
+</li>
+<li><p>事件对象<br>DOM中的事件对象（event）</p>
+</li>
+</ul>
+<h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><ul>
+<li>html事件处理程序<br><code>&lt;div onclick=&quot;alert(event.type)&quot;&gt;&lt;/div&gt;</code></li>
+</ul>
+<p><code>&lt;div onclick=&quot;test()&quot;&gt;&lt;/div&gt;</code><br>onclick 里面js的作用域是全局的，存在维护性问题（不知道变量函数是哪里的）</p>
+<ul>
+<li>DOM0级事件处理程序<br>在冒泡阶段调用事件处理程序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var btn &#x3D; document,getElementById(&quot;btn&quot;);</span><br><span class="line"> btn.onclick &#x3D; function(event)&#123;</span><br><span class="line">  alert(event.type);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>DOM2级事件处理程序<br>false（true）：在冒泡阶段调用事件处理程序<br>true：在捕获阶段调用事件处理程序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var btn &#x3D; document,getElementById(&quot;btn&quot;);</span><br><span class="line">function handler &#x3D; function(event)&#123;</span><br><span class="line">	console.log(event.type)</span><br><span class="line">&#125;</span><br><span class="line">btn.addEventListener(&#39;click&#39;,handler, false);</span><br><span class="line">btn.removeEventListener(&#39;click&#39;,handler, false);</span><br></pre></td></tr></table></figure>
+按顺序执行、可添加多个事件、匿名函数不能被移除<br>(ie attachEvent和detachEvent相反顺序执行、匿名函数不能被移除)</li>
+<li>根据DOM0 DOM2写出跨浏览器事件处理程序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var EventUtil &#x3D; &#123;</span><br><span class="line">		addHandler: function(ele, type, handler)&#123;</span><br><span class="line">			if(ele.addEventListener)&#123;</span><br><span class="line">				ele.addEventListener(type, handler, false);</span><br><span class="line">			&#125;else if(ele.attachEvent)&#123;</span><br><span class="line">				ele.attachEvent(&#39;on&#39;+type, handler);</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				ele[&#39;on&#39; + type] &#x3D; handler</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;,</span><br><span class="line">		removeHandler: function()&#123;</span><br><span class="line">			if(ele.removeEventListener)&#123;</span><br><span class="line">				ele.removeEventListener(type, handler, false);</span><br><span class="line">			&#125;else if(ele.detachEvent)&#123;</span><br><span class="line">				ele.detachEvent(&#39;on&#39;+type, handler);</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				ele[&#39;on&#39; + type] &#x3D; null;</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	var btn &#x3D; document,getElementById(&quot;btn&quot;);</span><br><span class="line">	function handler(event)&#123;console.log(event.type)&#125;;</span><br><span class="line">	EventUtil.addHandler(btn, &#39;click&#39;, handler);</span><br><span class="line">	EventUtil.removeHandler(btn, &#39;click&#39;, handler);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2018/04/03/2018-04-03/" data-id="ckh9bp5mz002ty4y4dcnbdima" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-08-30" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2017/08/30/2017-08-30/" class="article-date">
+  <time datetime="2017-08-29T16:00:00.000Z" itemprop="datePublished">2017-08-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2017/08/30/2017-08-30/">css特殊字体处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>   遇到特殊字体，在网站用得比较多比如0…1000等排序是特殊字体，还有各种动态字体。<br>   这时候可以找美工要个字体SFNT格式的就行。<br>   然后在用css的font-face引入<br>   <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">        <span class="attribute">font-family</span>: <span class="string">&#x27;qingchun&#x27;</span>;</span><br><span class="line">        <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&#x27;../data/qingchun-s.eot&#x27;</span>);</span><br><span class="line">        <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&#x27;../data/qingchun-s.eot?#iefix&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;embedded-opentype&#x27;</span>),</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">&#x27;../data/qingchun-s.ttf&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;truetype&#x27;</span>);</span><br><span class="line">        <span class="attribute">font-weight</span>: normal;</span><br><span class="line">        <span class="attribute">font-style</span>: normal;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>   经过试验发现除了.ttf之外，还需要.eot来兼容IE浏览器。<br>   接下来你会发现你的字体太大了，有1mb多，加载要花4s。= =<br>   这时候你就想压缩字体，这里推荐<a target="_blank" rel="noopener" href="https://github.com/googlei18n/sfntly">sfnttool</a>,<br>   java环境要求1.8.x以上版本。<br>   编译相关的文件后，在终端下执行<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar YOUR_LIB_PATH/sfnttool.jar -s <span class="string">&#x27;需要的文字&#x27;</span> YOUR_FONT_PATH/字体.ttf 字体-new.ttf</span><br></pre></td></tr></table></figure><br>   编译后的jar文件 ，字体存放路径， 新字体名字。<br>   另外还有一个在线字体转换工具，将你的.ttf文件生成.eot文件<a target="_blank" rel="noopener" href="https://onlinefontconverter.com/">onlinefontconverter</a></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><pre><code>后面发现转换字体还可以用[font-spider](https://github.com/aui/font-spider);
+字体压缩可以用[fontmin](https://github.com/ecomfe/fontmin/),
+[fontmin 使用文档](http://ecomfe.github.io/fontmin/#source)</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/08/30/2017-08-30/" data-id="ckh9bp5my002qy4y4h3ihbm0t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/css/" rel="tag">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/font/" rel="tag">font</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-08-24" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2017/08/24/2017-08-24/" class="article-date">
+  <time datetime="2017-08-23T16:00:00.000Z" itemprop="datePublished">2017-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/charles-https/">charles https</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言：后端坑我千百遍，是你没遇到客户端～ （不会抓包的前端不是好前端😄😄）</p>
+<h3 id="安装charles"><a href="#安装charles" class="headerlink" title="安装charles"></a>安装charles</h3><p> 安装环境 macOS 10.12.5<br> <a target="_blank" rel="noopener" href="http://charles.iiilab.com/">下载地址</a> 在这里下载一个charles最新版4.1.4, <code>安装后先打开Charles一次</code>。<br> 然后下载对应的破解文件版本（破解文件也有版本要求的） charles.jar。<br> 替换掉原文件夹里的charles.jar<br> Mac: /Applications/Charles.app/Contents/Java/charles.jar<br> Windows: C:\Program Files\Charles\lib\charles.jar</p>
+<h3 id="证书问题"><a href="#证书问题" class="headerlink" title="证书问题"></a>证书问题</h3><h4 id="mac上"><a href="#mac上" class="headerlink" title="mac上"></a>mac上</h4><p>  拦截https要在你的mac下载证书<br>  mac下载证书很简单，打开安装好的charles, 点击help-&gt; SSL Proxying -&gt; install Charles Root Certificate,<br>   <img src="/janceChun/img/2017-08-24-mac1.png"><br>  会去到系统证书那边，信任这个证书就好。<br>  <img src="/janceChun/img/2017-08-24-mac2.png"></p>
+<h4 id="相应的移动端上"><a href="#相应的移动端上" class="headerlink" title="相应的移动端上"></a>相应的移动端上</h4><p>  1.Mac 上启动 Charles，在同一个局域网内，把 iOS 设备的代理设置到 Mac机的 Charles 代理端口上。<br>  假定 Mac 机 IP 为192.168.1.10，Charles 的默认端口号为 8888，则设置到192.168.1.10:8888。<br>  2.在对应设备下载charles证书，设备访问这个url就会自动下载对应的证书<br>  <a target="_blank" rel="noopener" href="http://www.charlesproxy.com/getssl/">http://www.charlesproxy.com/getssl/</a><br>  如果想看对应的信息就访问这个<br>  <a target="_blank" rel="noopener" href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/</a><br>  实践证明在ios需要三个证书，如下图<br>  <img src="/janceChun/img/2017-08-24-iphone.png"><br>  安卓只需要一个就够了</p>
+<h3 id="开始拦截"><a href="#开始拦截" class="headerlink" title="开始拦截"></a>开始拦截</h3><p>   按照上面步骤按照完必要的东西后，就开始配置相关的信息啦</p>
+<h4 id="mac-上"><a href="#mac-上" class="headerlink" title="mac 上"></a>mac 上</h4><p>   打开charles 在相应的https上点击<code>SSL Proxying Enable</code><br>   ,如下图<br>   <img src="/janceChun/img/2017-08-24-mac3.png"></p>
+<h4 id="相应的移动端上-1"><a href="#相应的移动端上-1" class="headerlink" title="相应的移动端上"></a>相应的移动端上</h4><pre><code>移动端就跟普通http请求拦截一样配置就好啦，在Wi-Fi上配置</code></pre>
+<p>   <img src="/janceChun/img/2017-08-24-iphone2.png"></p>
+<h4 id="看到效果"><a href="#看到效果" class="headerlink" title="看到效果"></a>看到效果</h4><pre><code>配置完这些后你就会看到你想要的效果啦！，喜大普奔～</code></pre>
+<p>   <img src="/janceChun/img/2017-08-24-mac4.png">   </p>
+<h4 id="发放福利"><a href="#发放福利" class="headerlink" title="发放福利"></a>发放福利</h4><p>   https拦截很重要，但是拦截代理也不容小视哦，打开charles tools-&gt; Map Remote<br>   配置相应的url<br>   from 是来着xxx， to 是你要的地址。 支持正则表达，支持127.0.0.1<br>   <img src="/janceChun/img/2017-08-24-mac5.png"><br>   图表示把<a target="_blank" rel="noopener" href="https://page.yy.com/fr_qixi_17_mob/xxx.html%E4%BB%A3%E7%90%86%E5%88%B0%E4%BD%A0%E6%9C%AC%E6%9C%BAip%E5%9C%B0%E5%9D%80">https://page.yy.com/fr_qixi_17_mob/xxx.html代理到你本机ip地址</a><br>   <a target="_blank" rel="noopener" href="http://172.xx.xx.xx:3000/xxx.html">http://172.xx.xx.xx:3000/xxx.html</a> </p>
+<h3 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h3><p>如果你在的webview环境上，它不支持console，也不支持alert, 也不支持点击，也不支持vconsole js怎么办？<br>不怕，姐姐教你一个超级简单的方案<br>    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">     ...</span><br><span class="line">   &#125;<span class="keyword">catch</span> (err) &#123;</span><br><span class="line">     (<span class="keyword">new</span> Image()).src = <span class="string">`http://errors.net/log.php?msg=<span class="subst">$&#123;err&#125;</span>`</span>;</span><br><span class="line">    </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure></p>
+<p>这样就会在捕获到err后发出一个http请求，你观察请求携带的err就能排查err信息啦</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>我这么认真贴了这么多图，是不是要支持下😄，留个好评呗～ 欢迎错误指正！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/08/24/2017-08-24/" data-id="ckh9bp5mx002ly4y48g40aa46" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/charles/" rel="tag">charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/htpps/" rel="tag">htpps</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2017/05/05/2017-05-05/" class="article-date">
+  <time datetime="2017-05-04T16:00:00.000Z" itemprop="datePublished">2017-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/nodejs/">nodejs</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2017/05/05/2017-05-05/">V8 简介翻译</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开始我每日一篇的英文翻译（^o^）</p>
+<p>原文连接（<a target="_blank" rel="noopener" href="https://developers.google.com/v8/intro%EF%BC%89">https://developers.google.com/v8/intro）</a></p>
+<h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>v8 是用c++编写的运用在google开源的浏览器chrome上的google开源的高性能的JavaScript引擎。它实施ECMA-262规定的ECMAScript，运行在 Windows XP 以上， Mac OS X 10.5+ ， 使用IA-32的Linux 系统， ARM 或者 MIPS 处理器。V8 可以独立运行或者嵌入进任何C++应用程序</p>
+<p>V8 编译执行 JavaScript 源码，为objects处理内存分配，垃圾收集不再需要的objects。<br>垃圾收集是V8性能的关键之一。你可以通过<a target="_blank" rel="noopener" href="https://github.com/v8/v8/wiki/Design%20Elements">V8 设计元素</a>了解V8的相关性能。</p>
+<p>JavaScript 最常用于浏览器中的客户端脚本， 例如用来控制DOM（Document Object Model）object。<br>然而，DOM通常不是由JavaScript引擎提供，而是由浏览器提供。V8也是如此，Google Chrome 提供DOM。<br>V8 提供了ECMA标准规定的所有的数据类型，操作符，对象 和函数</p>
+<p>V8 允许任何C++ 应用程序暴漏自己的objects 跟函数给 JavaScript。 你可以决定你想要暴漏给JavaScript 的objects跟函数。<br>应用程序有很多这样的例子，例如： Adobe Flash 、 Mac OS X 的Dashboard Widgets 、Yahoo! Widgets</p>
+<p>你可以通过【 V8’s wiki】（<a target="_blank" rel="noopener" href="https://github.com/v8/v8/wiki%EF%BC%89%E6%89%BE%E5%88%B0%E6%9B%B4%E5%A4%9Av8%E7%9A%84%E4%BF%A1%E6%81%AF">https://github.com/v8/v8/wiki）找到更多v8的信息</a></p>
+<h3 id="生词"><a href="#生词" class="headerlink" title="生词"></a>生词</h3><p> implements 指实施工程，实施使之生效<br> execute   执行，但不一定生效<br> processors 处理器<br> memory allocation 内存分配<br> as specified in  …规定<br> embedded into  嵌入<br> standalone 独自运行<br> manipulate 操作<br> decide on 决定</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/05/05/2017-05-05/" data-id="ckh9bp5mx002ky4y4ggyk51jp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/nodejs/" rel="tag">nodejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-03-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2017/03/21/2017-03-21/" class="article-date">
+  <time datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Create-First-Open-Source-JavaScript-Library"><a href="#Create-First-Open-Source-JavaScript-Library" class="headerlink" title="Create First  Open Source JavaScript Library   "></a>Create First  Open Source JavaScript Library <a target="_blank" rel="noopener" href="https://travis-ci.org/janceChun/demo"> <img src="https://travis-ci.org/janceChun/demo.svg?branch=master"> </a></h1><p>following by <a target="_blank" rel="noopener" href="https://egghead.io/lessons/javascript-how-to-write-a-javascript-library-configuring-npm-and-creating-a-package-json">How to Write an Open Source JavaScript Library</a></p>
+<h3 id="configuring-npm"><a href="#configuring-npm" class="headerlink" title="configuring npm"></a>configuring npm</h3><ul>
+<li>npm set init-author-name ‘janceChun’</li>
+<li>npm set init-author-url ‘<a href="https://jancechun.github.io/janceChun/&#39;">https://jancechun.github.io/janceChun/&#39;</a></li>
+<li>npm set init-license ‘MIT’</li>
+<li>npm set save-exac true</li>
+<li>cat ~/.npmrc</li>
+<li>npm  adduser</li>
+<li>npm init </li>
+</ul>
+<h3 id="publish-git"><a href="#publish-git" class="headerlink" title="publish git"></a>publish git</h3><ul>
+<li>git add -A</li>
+<li>git commit -m  ‘add init’</li>
+<li>git push</li>
+</ul>
+<h3 id="publish-npm"><a href="#publish-npm" class="headerlink" title="publish npm"></a>publish npm</h3><ul>
+<li>npm pubslih </li>
+<li>npm info</li>
+</ul>
+<h3 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h3><ul>
+<li>git tag 0.0.1</li>
+<li>git push –tags</li>
+</ul>
+<h3 id="publish-beta-version"><a href="#publish-beta-version" class="headerlink" title="publish beta version"></a>publish beta version</h3><ul>
+<li> git tag 0.1.0-beta.0</li>
+<li> git push</li>
+<li> git push –tags</li>
+<li> npm publish –tag beta</li>
+<li> npm info </li>
+<li>npm dist-tag ls<br>(<br>u can run git tag 0.1.0-beta.1<br>and then git push –tags &amp;&amp; npm publish –tag beta<br>to update the  npm tag packe.<br>the  customer can npm install janceDemo@beta to update beta package<br>)</li>
+</ul>
+<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><ul>
+<li>npm i -D mocha chai</li>
+</ul>
+<h3 id="releases-with-semantic-release"><a href="#releases-with-semantic-release" class="headerlink" title="releases with  semantic-release"></a>releases with  semantic-release</h3><ul>
+<li>npm install -g semantinc-release-cli</li>
+<li>semantic-release-cli setup</li>
+<li>add .travis.yml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">before_script:</span><br><span class="line">  - npm prune</span><br><span class="line">script:</span><br><span class="line">  - npm run test</span><br><span class="line">after_success:</span><br><span class="line">  - npm run semantic-release</span><br></pre></td></tr></table></figure>
+
+<h3 id="writing-conventional-commits-with-commitizen"><a href="#writing-conventional-commits-with-commitizen" class="headerlink" title="writing conventional commits with commitizen"></a>writing conventional commits with commitizen</h3><ul>
+<li>npm install -D commitizen cz-conventional-changelog</li>
+<li>add package.json</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;commit&quot;:&quot;git-cz&quot;,</span><br><span class="line">   &quot;test&quot;: &quot;mocha src&#x2F;index.test.js -w&quot;,</span><br><span class="line">   &quot;semantic-release&quot;: &quot;semantic-release pre &amp;&amp; npm publish &amp;&amp; semantic-release post&quot;</span><br><span class="line"> &#125;,</span><br><span class="line">  &quot;czConfig&quot;:&#123;</span><br><span class="line">     &quot;path&quot;:&quot;node_modules&#x2F;cz-conventional-changelog&quot;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git add -A</li>
+<li>npm run commit</li>
+</ul>
+<h3 id="commiting-a-new-feature-width-commitizen"><a href="#commiting-a-new-feature-width-commitizen" class="headerlink" title="commiting a new feature width commitizen"></a>commiting a new feature width commitizen</h3><ul>
+<li>npm run commit</li>
+</ul>
+<pre><code>? Select the type of change that you&#39;re committing: feat:     A new feature
+? Denote the scope of this change ($location, $browser, $compile, etc.):
+ random
+? Write a short, imperative tense description of the change:
+ add avility to get an array of names
+? Provide a longer description of the change:
+ if you pass a number to the random function . you will receive an array with the number of randomw
+item
+? List any breaking changes:
+ close #2</code></pre>
+<h3 id="Automatically-releasing-with-TravisCI"><a href="#Automatically-releasing-with-TravisCI" class="headerlink" title="Automatically releasing with TravisCI"></a>Automatically releasing with TravisCI</h3><h3 id="Automatically-running-test-before-commits-with-ghooks"><a href="#Automatically-running-test-before-commits-with-ghooks" class="headerlink" title="Automatically running test before commits with ghooks"></a>Automatically running test before commits with ghooks</h3><h3 id="Adding-code-code-coverage-recording-with-Istanbul"><a href="#Adding-code-code-coverage-recording-with-Istanbul" class="headerlink" title="Adding code code coverage recording with Istanbul"></a>Adding code code coverage recording with Istanbul</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/03/21/2017-03-21/" data-id="ckh9bp5mw002fy4y47yzf60u3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/javascript/" rel="tag">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="page/7/">7</a><a class="extend next" rel="next" href="page/2/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="categories/svn/">svn</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="tags/angular/" style="font-size: 20px;">angular</a> <a href="tags/charles/" style="font-size: 10px;">charles</a> <a href="tags/cron/" style="font-size: 10px;">cron</a> <a href="tags/css/" style="font-size: 10px;">css</a> <a href="tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="tags/docker/" style="font-size: 10px;">docker</a> <a href="tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="tags/font/" style="font-size: 10px;">font</a> <a href="tags/git/" style="font-size: 10px;">git</a> <a href="tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="tags/htpps/" style="font-size: 10px;">htpps</a> <a href="tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="tags/npm/" style="font-size: 10px;">npm</a> <a href="tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="tags/svn/" style="font-size: 10px;">svn</a> <a href="tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="2018/04/03/2018-04-03/">js 事件复习</a>
+          </li>
+        
+          <li>
+            <a href="2017/08/30/2017-08-30/">css特殊字体处理</a>
+          </li>
+        
+          <li>
+            <a href="2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+          </li>
+        
+          <li>
+            <a href="2017/05/05/2017-05-05/">V8 简介翻译</a>
+          </li>
+        
+          <li>
+            <a href="2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 janceChun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="/janceChun/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="fancybox/jquery.fancybox.css">
+
+  
+<script src="fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
