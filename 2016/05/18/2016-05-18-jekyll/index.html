@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="janceChun">
 <meta property="og:description" content="angular 要实现form-data格式">
 <meta property="og:locale">
-<meta property="og:image" content="https://jancechun.github.io/janceChun/img/2016-05-18.jpg">
+<meta property="og:image" content="https://jancechun.github.io/janceChun/images/2016-05-18.jpg">
 <meta property="article:published_time" content="2016-05-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-08T15:02:06.006Z">
+<meta property="article:modified_time" content="2020-11-08T16:44:08.035Z">
 <meta property="article:author" content="janceChun">
 <meta property="article:tag" content="angular">
 <meta property="article:tag" content="ajax">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jancechun.github.io/janceChun/img/2016-05-18.jpg">
+<meta name="twitter:image" content="https://jancechun.github.io/janceChun/images/2016-05-18.jpg">
   
     <link rel="alternate" href="../../../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
   
@@ -103,12 +103,12 @@
 <p>2.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">customFormDataObject = <span class="function"><span class="keyword">function</span> (<span class="params">data, headersGetter</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> contentType = <span class="string">&#x27;application/json&#x27;</span>;</span><br><span class="line">    angular.forEach(data, <span class="function"><span class="keyword">function</span> (<span class="params">value, key</span>) </span>&#123;</span><br><span class="line">         fd.append(key, <span class="keyword">new</span> Blob([<span class="built_in">JSON</span>.stringify(value)], &#123;</span><br><span class="line">             type: contentType</span><br><span class="line">         &#125;));</span><br><span class="line">         contentType = <span class="string">&#x27;image/png&#x27;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> headers = headersGetter();</span><br><span class="line">    <span class="keyword">delete</span> headers[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fd;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="在chrome-请求的格式形式如图"><a href="#在chrome-请求的格式形式如图" class="headerlink" title="在chrome 请求的格式形式如图"></a>在chrome 请求的格式形式如图</h3><p>  <img src="/janceChun/img/2016-05-18.jpg"></p>
+<h3 id="在chrome-请求的格式形式如图"><a href="#在chrome-请求的格式形式如图" class="headerlink" title="在chrome 请求的格式形式如图"></a>在chrome 请求的格式形式如图</h3><p>  <img src="/janceChun/images/2016-05-18.jpg"></p>
 <h3 id="原生js写法"><a href="#原生js写法" class="headerlink" title="原生js写法"></a>原生js写法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData =<span class="keyword">new</span> FormData();</span><br><span class="line">   formData.append(<span class="string">&#x27;en_name&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;试试&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;brief&#x27;</span>,<span class="string">&#x27;jianjie&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;icon_file&#x27;</span>,file);</span><br><span class="line">   formData.append(<span class="string">&#x27;owner&#x27;</span>,$scope.loginUser.id);</span><br><span class="line">   formData.append(<span class="string">&#x27;category&#x27;</span>,<span class="number">4</span>);</span><br><span class="line">   <span class="keyword">var</span>  xml=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">   xml.open(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;/api/builds/project/create&#x27;</span>);</span><br><span class="line">   xml.send(formData);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/18/2016-05-18-jekyll/" data-id="ckh9c37bz000dygy4f63c9z47" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/18/2016-05-18-jekyll/" data-id="ckh9ck9sk000dlvy4gh3vhqgf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/angular/" rel="tag">angular</a></li></ul>

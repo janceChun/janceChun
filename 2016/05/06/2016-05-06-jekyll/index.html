@@ -14,15 +14,15 @@
 <meta property="og:site_name" content="janceChun">
 <meta property="og:description" content="http 缓存处理步骤,服务器配置,客户端配置">
 <meta property="og:locale">
-<meta property="og:image" content="https://jancechun.github.io/janceChun/img/2016-05-06.png">
-<meta property="og:image" content="https://jancechun.github.io/janceChun/img/2016-05-06-1.jpg">
+<meta property="og:image" content="https://jancechun.github.io/janceChun/images/2016-05-06.png">
+<meta property="og:image" content="https://jancechun.github.io/janceChun/images/2016-05-06-1.jpg">
 <meta property="article:published_time" content="2016-05-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-08T15:02:06.006Z">
+<meta property="article:modified_time" content="2020-11-08T16:44:08.035Z">
 <meta property="article:author" content="janceChun">
 <meta property="article:tag" content="ajax">
 <meta property="article:tag" content="http 缓存">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jancechun.github.io/janceChun/img/2016-05-06.png">
+<meta name="twitter:image" content="https://jancechun.github.io/janceChun/images/2016-05-06.png">
   
     <link rel="alternate" href="../../../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
   
@@ -104,11 +104,11 @@
 <p>5 创建响应 </p>
 <p>6 发送(cache-control ,age,expires,via)  </p>
 <p>7 日志    </p>
-<p>   <img src="/janceChun/img/2016-05-06.png"></p>
+<p>   <img src="/janceChun/images/2016-05-06.png"></p>
 <h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><p><code>cache-control</code> : max-age=0(秒数) no-store(禁止缓存对响应进行复制)<br>                no-cache(do-not-serve-from-cache-without-revalidation)<br>                must-revalidate(504)<br><code>expires(响应失效时间)</code><br><code>age</code><br>优先级</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-control:no-store -&gt;   cache-control:no-cache -&gt;</span><br><span class="line">cache-control: must-revalidate -&gt; cache-control:max-age -&gt;</span><br><span class="line">expires(响应失效时间)</span><br></pre></td></tr></table></figure>
 
-<h1 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h1><p>Cache-Control : no-cache<br>If-Modified-Since :’Mon, 26 Jul 1997 05:00:00 GMT’<br>pragma: no-cache<br> <img src="/janceChun/img/2016-05-06-1.jpg"></p>
+<h1 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h1><p>Cache-Control : no-cache<br>If-Modified-Since :’Mon, 26 Jul 1997 05:00:00 GMT’<br>pragma: no-cache<br> <img src="/janceChun/images/2016-05-06-1.jpg"></p>
 <h2 id="IFRAME配置"><a href="#IFRAME配置" class="headerlink" title="IFRAME配置"></a>IFRAME配置</h2><pre><code class="html">&lt;META http-equiv=&quot;Expires&quot; content=&quot;Mon, 26 Jul 1997 05:00:00 GMT&quot;&gt;
  &lt;META http-equiv=&quot;Last-Modified&quot; content=&quot;Sat, 10 Nov 1997 09:08:07 GMT&quot;&gt;
  &lt;META http-equiv=&quot;Cache-Control&quot; content=&quot;no-store, no-cache, must-revalidate&quot;&gt;
@@ -144,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/06/2016-05-06-jekyll/" data-id="ckh9c37bv0007ygy48rdu4si3" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/06/2016-05-06-jekyll/" data-id="ckh9ck9sh0007lvy4f4mf9t13" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li></ul>
