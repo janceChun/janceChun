@@ -15,7 +15,7 @@
 <meta property="article:author" content="janceChun">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+    <link rel="alternate" href="../../atom.xml" title="janceChun" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,12 +46,12 @@
         
           <a class="main-nav-link" href="../../index.html">Home</a>
         
-          <a class="main-nav-link" href="../../janceChun/archives">Archives</a>
+          <a class="main-nav-link" href="../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="../../janceChun/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -64,14 +64,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-05-06-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-27-2-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/06/2016-05-06-jekyll/" class="article-date">
-  <time datetime="2016-05-05T16:00:00.000Z" itemprop="datePublished">2016-05-06</time>
+    <a href="../../2016/05/27/2016-05-27-2-jekyll/" class="article-date">
+  <time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/http/">http</a>
+    <a class="article-category-link" href="../../categories/git/">git</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/06/2016-05-06-jekyll/">http  缓存</a>
+      <a class="article-title" href="../../2016/05/27/2016-05-27-2-jekyll/">git 小常识</a>
     </h1>
   
 
@@ -90,57 +90,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="缓存处理步骤"><a href="#缓存处理步骤" class="headerlink" title="缓存处理步骤"></a>缓存处理步骤</h2><p>1 接收:读取请求报文   </p>
-<p>2 解析:解析报文,提取url和首部   </p>
-<p>3 查询:查询是否有本地副本可用(metadata)   </p>
-<p>4 新鲜度检测 </p>
-<p>5 创建响应 </p>
-<p>6 发送(cache-control ,age,expires,via)  </p>
-<p>7 日志    </p>
-<p>   <img src="/janceChun/images/2016-05-06.png"></p>
-<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><p><code>cache-control</code> : max-age=0(秒数) no-store(禁止缓存对响应进行复制)<br>                no-cache(do-not-serve-from-cache-without-revalidation)<br>                must-revalidate(504)<br><code>expires(响应失效时间)</code><br><code>age</code><br>优先级</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-control:no-store -&gt;   cache-control:no-cache -&gt;</span><br><span class="line">cache-control: must-revalidate -&gt; cache-control:max-age -&gt;</span><br><span class="line">expires(响应失效时间)</span><br></pre></td></tr></table></figure>
+        <h2 id="git-小常识"><a href="#git-小常识" class="headerlink" title="git 小常识"></a>git 小常识</h2><h3 id="有个文件经常修改-但是又不能提交-处理情况"><a href="#有个文件经常修改-但是又不能提交-处理情况" class="headerlink" title="有个文件经常修改,但是又不能提交,处理情况"></a>有个文件经常修改,但是又不能提交,处理情况</h3><p>git(git version  2.8.3) 要忽略一个文件提交要在 .git/hooks/ 文件下加上 pre-commit</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">git diff --cached --name-only | grep -E <span class="string">&#x27;fileName&#x27;</span></span><br><span class="line">&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>[$? -eq 0];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;不能把fileName提交了&#x27;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h1><p>Cache-Control : no-cache<br>If-Modified-Since :’Mon, 26 Jul 1997 05:00:00 GMT’<br>pragma: no-cache<br> <img src="/janceChun/images/2016-05-06-1.jpg"></p>
-<h2 id="IFRAME配置"><a href="#IFRAME配置" class="headerlink" title="IFRAME配置"></a>IFRAME配置</h2><pre><code class="html">&lt;META http-equiv=&quot;Expires&quot; content=&quot;Mon, 26 Jul 1997 05:00:00 GMT&quot;&gt;
- &lt;META http-equiv=&quot;Last-Modified&quot; content=&quot;Sat, 10 Nov 1997 09:08:07 GMT&quot;&gt;
- &lt;META http-equiv=&quot;Cache-Control&quot; content=&quot;no-store, no-cache, must-revalidate&quot;&gt;
- &lt;META http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt;</code></pre>
-<p>相互影响  </p>
-<table>
-<thead>
-<tr>
-<th align="center">http请求</th>
-<th align="center">http返回</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">if-modified-since</td>
-<td align="center">expires last-modified</td>
-</tr>
-<tr>
-<td align="center">if-none-match</td>
-<td align="center">etag(实体标记)</td>
-</tr>
-</tbody></table>
-<h2 id="最终解决方案"><a href="#最终解决方案" class="headerlink" title="最终解决方案"></a>最终解决方案</h2><ul>
-<li><p>在前端配置<br>  Cache-Control : no-cache<br>  If-Modified-Since :’Mon, 26 Jul 1997 05:00:00 GMT’<br>  pragma: no-cache   </p>
-</li>
-<li><p>服务器端配置(api的 http get 请求 )<br>  在服务器response头部添加 </p>
-<pre><code>   cache-control : max-age=0, no-cache ,must-revalidate  
-    expires:0 </code></pre>
-<p>  或者nginx配置response头部</p>
-</li>
-</ul>
-<p><a href="http://zha-zi.iteye.com/blog/1964736 " target="_blank">参考资料1</a><br><a href="https://www.renfei.org/blog/http-caching.html" target="_blank">参考资料2</a><br><a href="http://www.mobify.com/blog/beginners-guide-to-http-cache-headers/" target="_blank">参考资料3</a><br><a href="http://tech.uc.cn/?p=965" target="_blank">nginx配置ETag</a>           </p>
+<p>如果pre commit 文件没有运行,执行以下语句:<br>chmod +x .git/hooks/pre-commit</p>
+<h3 id="git-commit-之前还可以-save-stash"><a href="#git-commit-之前还可以-save-stash" class="headerlink" title="git commit 之前还可以 save stash"></a>git commit 之前还可以 save stash</h3><h3 id="git-commit-只要不是push-还可以Roll-back"><a href="#git-commit-只要不是push-还可以Roll-back" class="headerlink" title="git commit 只要不是push 还可以Roll back"></a>git commit 只要不是push 还可以Roll back</h3><p>最后附带<a href='https://git-scm.com/book/zh/v2' target='_blank'>git 学习地址</a></p>
+<p>感谢<a href='https://www.douban.com/people/56165402/' target='_blank'>肥昊</a>同学!</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/06/2016-05-06-jekyll/" data-id="ckh9ck9sh0007lvy4f4mf9t13" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/27/2016-05-27-2-jekyll/" data-id="ckhc1w6ig000oihy4dltmab75" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/git/" rel="tag">git</a></li></ul>
 
     </footer>
   </div>
@@ -149,10 +112,109 @@
 
 
   
-    <article id="post-2016-05-05-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-26-2-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/05/2016-05-05-jekyll/" class="article-date">
-  <time datetime="2016-05-04T16:00:00.000Z" itemprop="datePublished">2016-05-05</time>
+    <a href="../../2016/05/26/2016-05-26-2-jekyll/" class="article-date">
+  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/05/26/2016-05-26-2-jekyll/">css 文字对齐</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="解决文字一行的时候居中对齐-多行的时候左对齐-如下图"><a href="#解决文字一行的时候居中对齐-多行的时候左对齐-如下图" class="headerlink" title="解决文字一行的时候居中对齐,多行的时候左对齐,如下图"></a>解决文字一行的时候居中对齐,多行的时候左对齐,如下图</h2><p> <img src="/janceChun/images/2016-05-26-1.png"></p>
+<p>原理: 设置display为inline-block,由父亲元素控制text-align:为center,再由本元素设置text-align:left</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="rWGYyx" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="rWGYyx" class="codepen">See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/janceChun/pen/rWGYyx/">rWGYyx</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/26/2016-05-26-2-jekyll/" data-id="ckhc1w6id000eihy40kl1dnv0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-26-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/05/26/2016-05-26-jekyll/" class="article-date">
+  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/05/26/2016-05-26-jekyll/">css 垂直居中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实现多行文字垂直居中-如下图"><a href="#实现多行文字垂直居中-如下图" class="headerlink" title="实现多行文字垂直居中,如下图"></a>实现多行文字垂直居中,如下图</h2><p> <img src="/janceChun/images/2016-05-26.png"></p>
+<h3 id="flex-方法"><a href="#flex-方法" class="headerlink" title="flex 方法"></a>flex 方法</h3><p>将display设置为flex,水平位置justify-content设置为center,垂直位置flex-direction设置为column;<br>然后根据position: absolute定位到left:50%;top:0的位置</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="Jbrrpo" data-default-tab="css,result" data-user="janceChun" data-embed-version="2" data-pen-title="Jbrrpo" class="codepen">See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/janceChun/pen/Jbrrpo/">Jbrrpo</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="transform-translate-方法"><a href="#transform-translate-方法" class="headerlink" title="transform:translate 方法"></a>transform:translate 方法</h3><p>设置position: absolute绝对定位,然后垂直位置下移50%既top:50%;transform设置垂直位置为-50%,元素刚好垂直居中</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="oYGoXZ" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="oYGoXZ" class="codepen">See the Pen <a target="_blank" rel="noopener" href="http://codepen.io/janceChun/pen/oYGoXZ/">oYGoXZ</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="vertical-align-行内元素基线垂直对齐"><a href="#vertical-align-行内元素基线垂直对齐" class="headerlink" title="vertical-align 行内元素基线垂直对齐"></a>vertical-align 行内元素基线垂直对齐</h3><p>图片的vertical-align 基准线跟 文字的 vertical-align基准线对齐</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="oYGojW" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="oYGojW" class="codepen">See the Pen <a target="_blank" rel="noopener" href="http://codepen.io/janceChun/pen/oYGojW/">oYGojW</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/26/2016-05-26-jekyll/" data-id="ckhc1w6ie000iihy42bfrgwbm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-18-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/05/18/2016-05-18-jekyll/" class="article-date">
+  <time datetime="2016-05-17T16:00:00.000Z" itemprop="datePublished">2016-05-18</time>
 </a>
     
   <div class="article-category">
@@ -167,7 +229,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/05/2016-05-05-jekyll/">angular 配置http get 缓存</a>
+      <a class="article-title" href="../../2016/05/18/2016-05-18-jekyll/">angular  multipart/form-data </a>
     </h1>
   
 
@@ -175,18 +237,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通常做法就是在http request头部的<code>Cache-Control</code>设置为no-cache,<code>Pragma</code>设置为no-cache,</p>
-<p>ie的<code>If-Modified-Since</code>设置为’Mon, 26 Jul 1997 05:00:00 GMT’,</p>
-<p>写法如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$httpProvider.interceptors.push(<span class="function"><span class="keyword">function</span>(<span class="params">$q, $location</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="string">&#x27;request&#x27;</span>:<span class="function"><span class="keyword">function</span>(<span class="params">req</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="title">if</span>(<span class="params">req.method===<span class="string">&#x27;GET&#x27;</span></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(req.method,req.url);</span><br><span class="line">          <span class="keyword">if</span>(!<span class="regexp">/\.(html)$/</span>.test(req.url))&#123;</span><br><span class="line">           <span class="function"><span class="title">if</span>(<span class="params">req.url.substr(req.url.length-<span class="number">1</span>)===<span class="string">&#x27;/&#x27;</span></span>)</span>&#123;</span><br><span class="line">            req.url=req.url+<span class="string">&#x27;?t=&#x27;</span>+<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// else&#123;</span></span><br><span class="line">           <span class="comment">//  req.url=req.url+&#x27;&amp;t=&#x27;+new Date().getTime();</span></span><br><span class="line">           <span class="comment">// &#125;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> req;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&#x27;responseError&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;response, &#x27;</span> + response.status);</span><br><span class="line">        <span class="keyword">if</span> (response.status === <span class="number">401</span> || response.status === <span class="number">403</span>) &#123;</span><br><span class="line">          $location.path(<span class="string">&#x27;/login&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $q.reject(response);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">!$httpProvider.defaults.headers.get</span>)</span>&#123;</span><br><span class="line">    $httpProvider.defaults.headers.get=&#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//disable IE ajax request caching</span></span><br><span class="line">  $httpProvider.defaults.headers.get[<span class="string">&#x27;If-Modified-Since&#x27;</span>] = <span class="string">&#x27;Mon, 26 Jul 1997 05:00:00 GMT&#x27;</span>;</span><br><span class="line">  <span class="comment">// extra</span></span><br><span class="line">  $httpProvider.defaults.headers.get[<span class="string">&#x27;Cache-Control&#x27;</span>] = <span class="string">&#x27;no-cache&#x27;</span>;</span><br><span class="line">  $httpProvider.defaults.headers.get.Pragma = <span class="string">&#x27;no-cache&#x27;</span>;</span><br></pre></td></tr></table></figure>
+        <h2 id="在postman里面form表单提交格式有form-data-x-www-form-urlencoded-raw-binary四种"><a href="#在postman里面form表单提交格式有form-data-x-www-form-urlencoded-raw-binary四种" class="headerlink" title="在postman里面form表单提交格式有form-data x-www-form-urlencoded raw binary四种"></a>在postman里面form表单提交格式有<code>form-data</code> <code>x-www-form-urlencoded</code> <code>raw</code> <code>binary</code>四种</h2><h3 id="如果在angular-要实现form-data格式要"><a href="#如果在angular-要实现form-data格式要" class="headerlink" title="如果在angular 要实现form-data格式要"></a>如果在angular 要实现form-data格式要</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$http(&#123;</span><br><span class="line">   method: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">   url: url,</span><br><span class="line">   headers: &#123;</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data&#x27;</span></span><br><span class="line">   &#125;,</span><br><span class="line">   data: &#123;</span><br><span class="line">      data: model,</span><br><span class="line">      file: file</span><br><span class="line">   &#125;,</span><br><span class="line">   transformRequest: customFormDataObject</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>customFormDataObject</code> function 可以为<br>1.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">customFormDataObject formDataObject = <span class="function"><span class="keyword">function</span> (<span class="params">data, headersGetter</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line">   angular.forEach(data, <span class="function"><span class="keyword">function</span> (<span class="params">value, key</span>) </span>&#123;</span><br><span class="line">      fd.append(key, value);</span><br><span class="line">   &#125;);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> headers = headersGetter();</span><br><span class="line">   <span class="keyword">delete</span> headers[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> fd;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<p>2.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">customFormDataObject = <span class="function"><span class="keyword">function</span> (<span class="params">data, headersGetter</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> contentType = <span class="string">&#x27;application/json&#x27;</span>;</span><br><span class="line">    angular.forEach(data, <span class="function"><span class="keyword">function</span> (<span class="params">value, key</span>) </span>&#123;</span><br><span class="line">         fd.append(key, <span class="keyword">new</span> Blob([<span class="built_in">JSON</span>.stringify(value)], &#123;</span><br><span class="line">             type: contentType</span><br><span class="line">         &#125;));</span><br><span class="line">         contentType = <span class="string">&#x27;image/png&#x27;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> headers = headersGetter();</span><br><span class="line">    <span class="keyword">delete</span> headers[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fd;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="在chrome-请求的格式形式如图"><a href="#在chrome-请求的格式形式如图" class="headerlink" title="在chrome 请求的格式形式如图"></a>在chrome 请求的格式形式如图</h3><p>  <img src="/janceChun/images/2016-05-18.jpg"></p>
+<h3 id="原生js写法"><a href="#原生js写法" class="headerlink" title="原生js写法"></a>原生js写法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData =<span class="keyword">new</span> FormData();</span><br><span class="line">   formData.append(<span class="string">&#x27;en_name&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;试试&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;brief&#x27;</span>,<span class="string">&#x27;jianjie&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;icon_file&#x27;</span>,file);</span><br><span class="line">   formData.append(<span class="string">&#x27;owner&#x27;</span>,$scope.loginUser.id);</span><br><span class="line">   formData.append(<span class="string">&#x27;category&#x27;</span>,<span class="number">4</span>);</span><br><span class="line">   <span class="keyword">var</span>  xml=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">   xml.open(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;/api/builds/project/create&#x27;</span>);</span><br><span class="line">   xml.send(formData);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/05/2016-05-05-jekyll/" data-id="ckh9ck9se0003lvy44w3ob768" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/18/2016-05-18-jekyll/" data-id="ckhc1w6ia0009ihy41rrfbs2b" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li></ul>
 
     </footer>
   </div>
@@ -195,14 +261,14 @@
 
 
   
-    <article id="post-2016-04-25-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-17-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/04/25/2016-04-25-jekyll/" class="article-date">
-  <time datetime="2016-04-24T16:00:00.000Z" itemprop="datePublished">2016-04-25</time>
+    <a href="../../2016/05/17/2016-05-17-jekyll/" class="article-date">
+  <time datetime="2016-05-16T16:00:00.000Z" itemprop="datePublished">2016-05-17</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
+    <a class="article-category-link" href="../../categories/mysql/">mysql</a>
   </div>
 
   </div>
@@ -213,7 +279,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/04/25/2016-04-25-jekyll/">angular 日期时间选择控件</a>
+      <a class="article-title" href="../../2016/05/17/2016-05-17-jekyll/">mysql 遇到的坑</a>
     </h1>
   
 
@@ -221,52 +287,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用情况:在不引入jquery的情况下使用日期时间[控件],<br>修改了<code>laydate</code>的部分信息,使其配合angular directive<br>1 使用引入只需要bower install  <a href="mailto:&#x6a;&#x6c;&#97;&#121;&#100;&#x61;&#116;&#x65;&#x40;&#x31;&#46;&#48;&#46;&#48;">&#x6a;&#x6c;&#97;&#121;&#100;&#x61;&#116;&#x65;&#x40;&#x31;&#46;&#48;&#46;&#48;</a><br>2 在html加入 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../bower_components/jlaydate/laydate.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>3 自定义自己的directive</p>
-<pre><code class="js">angular.module(&#39;yourApp&#39;).directive(&#39;timePicker&#39;, function($parse) &#123;
-  return &#123;
-    require: &#39;ngModel&#39;,
-    link: function(scope, element, attrs, ngModelController) &#123;
-      var configuration = &#123;
-        elem: &#39;#&#39; + attrs.id,
-        element: element[0],
-        format: &#39;YYYY-MM-DD hh:mm:ss&#39;,
-        max: &#39;2999-06-16 23:59:59&#39;, //最大日期
-        istime: true,
-        choose: function(datas) &#123;
-          ngModelController.$setValidity(&#39;timePickerFormat&#39;, true);
-          $parse(attrs.ngModel).assign(scope, datas);
-          scope.$apply();
-        &#125;
-      &#125;;
-      element.bind(&#39;focus&#39;, function() &#123;
-        laydate(configuration);
-      &#125;);
-      ngModelController.$parsers.push(function(data) &#123;
-        if (moment(data, &#39;YYYY-MM-DD HH:mm:ss&#39;, true).isValid()) &#123;
-          ngModelController.$setValidity(&#39;timePickerFormat&#39;, true);
-          return data; //converted
-        &#125; else if (data) &#123;
-          ngModelController.$setValidity(&#39;timePickerFormat&#39;, false);
-          return null;
-        &#125; else &#123;
-          ngModelController.$setValidity(&#39;timePickerFormat&#39;, true);
-          return null;
-        &#125;
-      &#125;);
-    &#125;
-  &#125;;
-&#125;);</code></pre>
-<p>4 运行效果<br> <img src="/janceChun/images/2016-04-25.png"><br>[控件]:<a target="_blank" rel="noopener" href="https://github.com/janceChun/laydate.git">https://github.com/janceChun/laydate.git</a></p>
+        <h2 id="mysql-不区分大小写"><a href="#mysql-不区分大小写" class="headerlink" title="mysql 不区分大小写"></a>mysql 不区分大小写</h2><h2 id="命令行启动mysql"><a href="#命令行启动mysql" class="headerlink" title="命令行启动mysql"></a>命令行启动mysql</h2><p>   mysql  -u root -p</p>
+<h2 id="修该表-数据库编码"><a href="#修该表-数据库编码" class="headerlink" title="修该表,数据库编码"></a>修该表,数据库编码</h2><p>ALTER TABLE tableName  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;<br>ALTER DATABASE databaseName  CHARACTER SET utf8 COLLATE utf8_general_ci;</p>
+<h2 id="查看database"><a href="#查看database" class="headerlink" title="查看database"></a>查看database</h2><p>  show create database databaseName;</p>
+<h2 id="导入mysql"><a href="#导入mysql" class="headerlink" title="导入mysql"></a>导入mysql</h2><p>  source /pathOfMysql/2016-04-20.sql</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/04/25/2016-04-25-jekyll/" data-id="ckh9ck9sc0001lvy42kolfdmj" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/17/2016-05-17-jekyll/" data-id="ckhc1w6ic000dihy4bkzy71bg" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li></ul>
 
     </footer>
   </div>
@@ -279,7 +311,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../6/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="../6/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><span class="page-number current">7</span><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../8/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -290,7 +322,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry/">Sentry</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry-docker/">Sentry docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
     </div>
   </div>
 
@@ -300,7 +332,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
     </div>
   </div>
 
@@ -310,7 +342,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 10px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 10px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/Sentry/" style="font-size: 13.33px;">Sentry</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 13.33px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 13.33px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/python/" style="font-size: 16.67px;">python</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
     </div>
   </div>
 
@@ -319,7 +351,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -332,23 +364,23 @@
       <ul>
         
           <li>
-            <a href="../../2018/04/03/2018-04-03/">js 事件复习</a>
+            <a href="../../2019/12/04/2019-12-04/">常见问题CSS设置</a>
           </li>
         
           <li>
-            <a href="../../2017/08/30/2017-08-30/">css特殊字体处理</a>
+            <a href="../../2018/10/18/2018-10-18/">docker sentry 配置企业ldap</a>
           </li>
         
           <li>
-            <a href="../../2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+            <a href="../../2018/10/17/2018-10-17/">Sentry部署</a>
           </li>
         
           <li>
-            <a href="../../2017/05/05/2017-05-05/">V8 简介翻译</a>
+            <a href="../../2018/09/01/2018-08-32/">验证码识别入门</a>
           </li>
         
           <li>
-            <a href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+            <a href="../../2018/08/31/2018-08-31/">Scrapy 入门</a>
           </li>
         
       </ul>
@@ -373,7 +405,7 @@
   
     <a href="../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="../../janceChun/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

@@ -15,7 +15,7 @@
 <meta property="article:author" content="janceChun">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+    <link rel="alternate" href="../../atom.xml" title="janceChun" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,12 +46,12 @@
         
           <a class="main-nav-link" href="../../index.html">Home</a>
         
-          <a class="main-nav-link" href="../../janceChun/archives">Archives</a>
+          <a class="main-nav-link" href="../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="../../janceChun/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -64,14 +64,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-05-26-2-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-07-01-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/26/2016-05-26-2-jekyll/" class="article-date">
-  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
+    <a href="../../2016/07/01/2016-07-01-jekyll/" class="article-date">
+  <time datetime="2016-06-30T16:00:00.000Z" itemprop="datePublished">2016-07-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/css/">css</a>
+    <a class="article-category-link" href="../../categories/docker/">docker</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/26/2016-05-26-2-jekyll/">css 文字对齐</a>
+      <a class="article-title" href="../../2016/07/01/2016-07-01-jekyll/">docker cron任务以及常见问题</a>
     </h1>
   
 
@@ -90,18 +90,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="解决文字一行的时候居中对齐-多行的时候左对齐-如下图"><a href="#解决文字一行的时候居中对齐-多行的时候左对齐-如下图" class="headerlink" title="解决文字一行的时候居中对齐,多行的时候左对齐,如下图"></a>解决文字一行的时候居中对齐,多行的时候左对齐,如下图</h2><p> <img src="/janceChun/images/2016-05-26-1.png"></p>
-<p>原理: 设置display为inline-block,由父亲元素控制text-align:为center,再由本元素设置text-align:left</p>
-<p data-height="265" data-theme-id="0" data-slug-hash="rWGYyx" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="rWGYyx" class="codepen">See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/janceChun/pen/rWGYyx/">rWGYyx</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+        <ol>
+<li>关于cron<br>一般来说cron预设有三个地方会有执行脚本设定档,分别为:<br><code>/etc/crontab</code>  crontab 会执行的设定档<br><code>/etc/cron.d/*</code> cron 会执行的设定档<br><code>/var/spool/cron/*</code>  crontab -e  存放的位置<br>一般执行顺序是<code>/etc/cron.d/</code>优先级最高,<code>/etc/cron.d/*</code>次之,<code>/var/spool/cron/*</code>最后.<br>而且防止<code>/etc/cron.d/</code>的配置文件一般<code>* * * * * root bash xxx.sh</code>,<br><code>/var/spool/cron/*</code>则为<code>* * * * * xxx.sh</code>,并且xxx.sh必须具有执行权限 </li>
+<li>当cron执行错误的时候如果系统有邮件发送功能,你会收到cron运行出错的信息</li>
+<li>docker 配置,只要在CMD 的时候启动cron就行了,把你的cron配置放置在<code>/etc/cron.d/</code>下<br>或者crontab crontabconfig就可以啦</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/26/2016-05-26-2-jekyll/" data-id="ckh9ck9sl000elvy4asqu7nvh" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/07/01/2016-07-01-jekyll/" data-id="ckhc1w6ik0012ihy47uim9vyu" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li></ul>
 
     </footer>
   </div>
@@ -110,113 +111,10 @@
 
 
   
-    <article id="post-2016-05-26-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-06-28-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/26/2016-05-26-jekyll/" class="article-date">
-  <time datetime="2016-05-25T16:00:00.000Z" itemprop="datePublished">2016-05-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/css/">css</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/26/2016-05-26-jekyll/">css 垂直居中</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实现多行文字垂直居中-如下图"><a href="#实现多行文字垂直居中-如下图" class="headerlink" title="实现多行文字垂直居中,如下图"></a>实现多行文字垂直居中,如下图</h2><p> <img src="/janceChun/images/2016-05-26.png"></p>
-<h3 id="flex-方法"><a href="#flex-方法" class="headerlink" title="flex 方法"></a>flex 方法</h3><p>将display设置为flex,水平位置justify-content设置为center,垂直位置flex-direction设置为column;<br>然后根据position: absolute定位到left:50%;top:0的位置</p>
-<p data-height="265" data-theme-id="0" data-slug-hash="Jbrrpo" data-default-tab="css,result" data-user="janceChun" data-embed-version="2" data-pen-title="Jbrrpo" class="codepen">See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/janceChun/pen/Jbrrpo/">Jbrrpo</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-
-<h3 id="transform-translate-方法"><a href="#transform-translate-方法" class="headerlink" title="transform:translate 方法"></a>transform:translate 方法</h3><p>设置position: absolute绝对定位,然后垂直位置下移50%既top:50%;transform设置垂直位置为-50%,元素刚好垂直居中</p>
-<p data-height="265" data-theme-id="0" data-slug-hash="oYGoXZ" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="oYGoXZ" class="codepen">See the Pen <a target="_blank" rel="noopener" href="http://codepen.io/janceChun/pen/oYGoXZ/">oYGoXZ</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-
-<h3 id="vertical-align-行内元素基线垂直对齐"><a href="#vertical-align-行内元素基线垂直对齐" class="headerlink" title="vertical-align 行内元素基线垂直对齐"></a>vertical-align 行内元素基线垂直对齐</h3><p>图片的vertical-align 基准线跟 文字的 vertical-align基准线对齐</p>
-<p data-height="265" data-theme-id="0" data-slug-hash="oYGojW" data-default-tab="html,result" data-user="janceChun" data-embed-version="2" data-pen-title="oYGojW" class="codepen">See the Pen <a target="_blank" rel="noopener" href="http://codepen.io/janceChun/pen/oYGojW/">oYGojW</a> by janceChun (<a target="_blank" rel="noopener" href="http://codepen.io/janceChun">@janceChun</a>) on <a target="_blank" rel="noopener" href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/26/2016-05-26-jekyll/" data-id="ckh9ck9sm000ilvy4bivocour" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-18-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/05/18/2016-05-18-jekyll/" class="article-date">
-  <time datetime="2016-05-17T16:00:00.000Z" itemprop="datePublished">2016-05-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/18/2016-05-18-jekyll/">angular  multipart/form-data </a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="在postman里面form表单提交格式有form-data-x-www-form-urlencoded-raw-binary四种"><a href="#在postman里面form表单提交格式有form-data-x-www-form-urlencoded-raw-binary四种" class="headerlink" title="在postman里面form表单提交格式有form-data x-www-form-urlencoded raw binary四种"></a>在postman里面form表单提交格式有<code>form-data</code> <code>x-www-form-urlencoded</code> <code>raw</code> <code>binary</code>四种</h2><h3 id="如果在angular-要实现form-data格式要"><a href="#如果在angular-要实现form-data格式要" class="headerlink" title="如果在angular 要实现form-data格式要"></a>如果在angular 要实现form-data格式要</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$http(&#123;</span><br><span class="line">   method: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">   url: url,</span><br><span class="line">   headers: &#123;</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data&#x27;</span></span><br><span class="line">   &#125;,</span><br><span class="line">   data: &#123;</span><br><span class="line">      data: model,</span><br><span class="line">      file: file</span><br><span class="line">   &#125;,</span><br><span class="line">   transformRequest: customFormDataObject</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><code>customFormDataObject</code> function 可以为<br>1.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">customFormDataObject formDataObject = <span class="function"><span class="keyword">function</span> (<span class="params">data, headersGetter</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line">   angular.forEach(data, <span class="function"><span class="keyword">function</span> (<span class="params">value, key</span>) </span>&#123;</span><br><span class="line">      fd.append(key, value);</span><br><span class="line">   &#125;);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> headers = headersGetter();</span><br><span class="line">   <span class="keyword">delete</span> headers[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> fd;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>2.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">customFormDataObject = <span class="function"><span class="keyword">function</span> (<span class="params">data, headersGetter</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> contentType = <span class="string">&#x27;application/json&#x27;</span>;</span><br><span class="line">    angular.forEach(data, <span class="function"><span class="keyword">function</span> (<span class="params">value, key</span>) </span>&#123;</span><br><span class="line">         fd.append(key, <span class="keyword">new</span> Blob([<span class="built_in">JSON</span>.stringify(value)], &#123;</span><br><span class="line">             type: contentType</span><br><span class="line">         &#125;));</span><br><span class="line">         contentType = <span class="string">&#x27;image/png&#x27;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> headers = headersGetter();</span><br><span class="line">    <span class="keyword">delete</span> headers[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fd;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="在chrome-请求的格式形式如图"><a href="#在chrome-请求的格式形式如图" class="headerlink" title="在chrome 请求的格式形式如图"></a>在chrome 请求的格式形式如图</h3><p>  <img src="/janceChun/images/2016-05-18.jpg"></p>
-<h3 id="原生js写法"><a href="#原生js写法" class="headerlink" title="原生js写法"></a>原生js写法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData =<span class="keyword">new</span> FormData();</span><br><span class="line">   formData.append(<span class="string">&#x27;en_name&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;试试&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;brief&#x27;</span>,<span class="string">&#x27;jianjie&#x27;</span>);</span><br><span class="line">   formData.append(<span class="string">&#x27;icon_file&#x27;</span>,file);</span><br><span class="line">   formData.append(<span class="string">&#x27;owner&#x27;</span>,$scope.loginUser.id);</span><br><span class="line">   formData.append(<span class="string">&#x27;category&#x27;</span>,<span class="number">4</span>);</span><br><span class="line">   <span class="keyword">var</span>  xml=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">   xml.open(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;/api/builds/project/create&#x27;</span>);</span><br><span class="line">   xml.send(formData);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/18/2016-05-18-jekyll/" data-id="ckh9ck9sk000dlvy4gh3vhqgf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-17-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/05/17/2016-05-17-jekyll/" class="article-date">
-  <time datetime="2016-05-16T16:00:00.000Z" itemprop="datePublished">2016-05-17</time>
+    <a href="../../2016/06/28/2016-06-28-jekyll/" class="article-date">
+  <time datetime="2016-06-27T16:00:00.000Z" itemprop="datePublished">2016-06-28</time>
 </a>
     
   <div class="article-category">
@@ -231,7 +129,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/17/2016-05-17-jekyll/">mysql 遇到的坑</a>
+      <a class="article-title" href="../../2016/06/28/2016-06-28-jekyll/"> 使用brew安装mysql遇到的若干问题的解决方案</a>
     </h1>
   
 
@@ -239,15 +137,93 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="mysql-不区分大小写"><a href="#mysql-不区分大小写" class="headerlink" title="mysql 不区分大小写"></a>mysql 不区分大小写</h2><h2 id="命令行启动mysql"><a href="#命令行启动mysql" class="headerlink" title="命令行启动mysql"></a>命令行启动mysql</h2><p>   mysql  -u root -p</p>
-<h2 id="修该表-数据库编码"><a href="#修该表-数据库编码" class="headerlink" title="修该表,数据库编码"></a>修该表,数据库编码</h2><p>ALTER TABLE tableName  CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;<br>ALTER DATABASE databaseName  CHARACTER SET utf8 COLLATE utf8_general_ci;</p>
-<h2 id="查看database"><a href="#查看database" class="headerlink" title="查看database"></a>查看database</h2><p>  show create database databaseName;</p>
-<h2 id="导入mysql"><a href="#导入mysql" class="headerlink" title="导入mysql"></a>导入mysql</h2><p>  source /pathOfMysql/2016-04-20.sql</p>
+        <h2 id="用homebrew安装mysql-遇到以下三种情况的解决"><a href="#用homebrew安装mysql-遇到以下三种情况的解决" class="headerlink" title="用homebrew安装mysql 遇到以下三种情况的解决"></a>用homebrew安装mysql 遇到以下三种情况的解决</h2><h3 id="ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’-2"><a href="#ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’-2" class="headerlink" title="ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)"></a>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</h3><p>  先通过ps aux |grep mysq* 查看mysql是否启动<br>  启动:  证明你的mysql初始化失败,通过以下代码可以解决<br>  不启动: 启动mysql 服务器就好,可以通过<code>mysql.server start</code>或者<code>brew services start mysql</code>启动<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br><span class="line">$ rm -rf /usr/<span class="built_in">local</span>/var/mysql</span><br><span class="line">$ mysqld --initialize</span><br></pre></td></tr></table></figure></p>
+<h3 id="Access-denied-for-user-‘root’-’localhost’"><a href="#Access-denied-for-user-‘root’-’localhost’" class="headerlink" title="Access denied for user ‘root’@’localhost’"></a>Access denied for user ‘root’@’localhost’</h3><p>   先把mysql的所有服务关掉<br>     <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mysqld --skip-grant-tables</span><br><span class="line">$ mysql -u root mysql</span><br><span class="line"><span class="variable">$mysql</span>&gt; update user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;my_password&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$mysql</span>&gt; FLUSH PRIVILEGES;</span><br><span class="line"><span class="variable">$mysql</span>&gt;<span class="built_in">exit</span>;</span><br><span class="line"><span class="variable">$mysql</span>.server restart</span><br></pre></td></tr></table></figure></p>
+<h3 id="the-server-quit-without-updating-PID-file"><a href="#the-server-quit-without-updating-PID-file" class="headerlink" title="the server quit without updating PID file"></a>the server quit without updating PID file</h3><p>   如果不小心kill mysql进程导致这个错误,可以 rm *.err /usr/local/mysql/data/,然后mysql.server start即可</p>
+<p> 参考资料:<a target="_blank" rel="noopener" href="https://xuri.me/2015/11/28/troubleshooting-homebrew-mysql-on-os-x.html">问题1参考</a> , <a target="_blank" rel="noopener" href="http://superuser.com/questions/603026/mysql-how-to-fix-access-denied-for-user-rootlocalhost">问题2参考</a>   </p>
+<p>最后备注一下brew安装后mysql路径:<br>    1. 执行路径: /usr/local/bin/mysql<br>     2. mysql存放路径: /usr/local/Cellar/mysql<br>     3. mysql数据存放路径: /usr/local/var/mysql  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/17/2016-05-17-jekyll/" data-id="ckh9ck9si0009lvy45lhadccz" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/06/28/2016-06-28-jekyll/" data-id="ckhc1w6ij000xihy43was606c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-06-22-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/06/22/2016-06-22-jekyll/" class="article-date">
+  <time datetime="2016-06-21T16:00:00.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/mysql/">mysql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/06/22/2016-06-22-jekyll/">mysql 编码、模式问题 </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果你想在不修改表字段结构的情况下,又想保存所有数据,可以尝试一下方法  </p>
+<h2 id="报错ER-DATA-TOO-LONG"><a href="#报错ER-DATA-TOO-LONG" class="headerlink" title="报错ER_DATA_TOO_LONG"></a>报错ER_DATA_TOO_LONG</h2><p>  设置sql_mode模式(mysql5.0以上版本支持三种sql_mode模式:ANSI、TRADITIONAL和STRICT_TRANS_TABLES)  </p>
+<table>
+<thead>
+<tr>
+<th align="center">模式</th>
+<th align="center">详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ANSI</td>
+<td align="center">宽松模式，对插入数据进行校验，如果不符合定义类型或长度，对数据类型调整或截断保存，报warning警告。</td>
+</tr>
+<tr>
+<td align="center">TRADITIONAL</td>
+<td align="center">严格模式，当向mysql数据库插入数据时，进行数据的严格校验，保证错误数据不能插入，报error错误。用于事物时，会进行事物的回滚。</td>
+</tr>
+<tr>
+<td align="center">STRICT_TRANS_TABLES</td>
+<td align="center">严格模式，进行数据的严格校验，错误数据不能插入，报error错误。</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>/etc/my.cnf或者在my.ini里找到  </p>
+<div style='font-size:14px; color:#445588'>
+    sql-mode=”STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+</div>
+把其中的STRICT_TRANS_TABLES去掉</li>
+<li><p>运行以下命令<br>set global  sql_mode=”ANSI”<br>set @@sql_mode=ANSI;<br>select @@sql_mode;//查看当前模式</p>
+<h2 id="报错ER-TRUNCATED-WRONG-VALUE-FOR-FIELD这个是中文编码问题-即使是utf8格式下也会出现"><a href="#报错ER-TRUNCATED-WRONG-VALUE-FOR-FIELD这个是中文编码问题-即使是utf8格式下也会出现" class="headerlink" title="报错ER_TRUNCATED_WRONG_VALUE_FOR_FIELD这个是中文编码问题,即使是utf8格式下也会出现"></a>报错ER_TRUNCATED_WRONG_VALUE_FOR_FIELD这个是中文编码问题,即使是utf8格式下也会出现</h2></li>
+<li><p>在/etc/my.cnf或者在my.ini里(设置utf8mb4编码格式)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set &#x3D; utf8</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-client-handshake &#x3D; false</span><br><span class="line">character-set-server &#x3D; utf8</span><br><span class="line">collation-server &#x3D; utf8mb4_unicode_ci</span><br><span class="line">init_connect&#x3D;&#39;SET NAMES utf8mb4&#39;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/06/22/2016-06-22-jekyll/" data-id="ckhc1w6ii000uihy4abhn4ld9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li></ul>
@@ -259,14 +235,14 @@
 
 
   
-    <article id="post-2016-05-12-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-06-01-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/12/2016-05-12-jekyll/" class="article-date">
-  <time datetime="2016-05-11T16:00:00.000Z" itemprop="datePublished">2016-05-12</time>
+    <a href="../../2016/06/01/2016-06-01-jekyll/" class="article-date">
+  <time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/nodejs/">nodejs</a>
+    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
   </div>
 
   </div>
@@ -277,7 +253,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/12/2016-05-12-jekyll/">nodejs 学习(一)</a>
+      <a class="article-title" href="../../2016/06/01/2016-06-01-jekyll/">js数字溢出问题</a>
     </h1>
   
 
@@ -285,28 +261,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="node模块实现"><a href="#node模块实现" class="headerlink" title="node模块实现"></a>node模块实现</h1><h2 id="优先从缓存加载"><a href="#优先从缓存加载" class="headerlink" title="优先从缓存加载"></a>优先从缓存加载</h2><h2 id="路径分析和文件定位"><a href="#路径分析和文件定位" class="headerlink" title="路径分析和文件定位"></a>路径分析和文件定位</h2><h3 id="模块标识符分析"><a href="#模块标识符分析" class="headerlink" title="模块标识符分析"></a>模块标识符分析</h3><h4 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h4><p>   http,fs,path<br>    核心模块其实分为C/C++编写的和JavaScript编写的两部分，其中C/C++文件存放在Node项目的src目录下，JavaScript文件存放在lib目录下。<br>    内建模块(由纯C/C++编写的部分)，因为它们通常不被用户直接调用<br>    Node的buffer、crypto、evals、fs、os等模块都是部分通过C/C++编写的  </p>
-<h4 id="路径形式的文件模块"><a href="#路径形式的文件模块" class="headerlink" title="路径形式的文件模块"></a>路径形式的文件模块</h4><p>   模块路径(沿路径向上逐级递归,直到根目录下的node_modules)</p>
-<h4 id="自定义模块"><a href="#自定义模块" class="headerlink" title="自定义模块"></a>自定义模块</h4><p>   可能是一个文件或者包的形式</p>
-<h3 id="文件定位"><a href="#文件定位" class="headerlink" title="文件定位"></a>文件定位</h3><h4 id="文件扩展名分析"><a href="#文件扩展名分析" class="headerlink" title="文件扩展名分析"></a>文件扩展名分析</h4><p> node会按.js .node .json的次序补足扩展名<br> 如果是.node和.json文件，在传递给require()的标识符中带上扩展名，会加快一点速度<br> 同步配合缓存，可以大幅度缓解Node单线程中阻塞式调用的缺陷</p>
-<h4 id="目录分析和包"><a href="#目录分析和包" class="headerlink" title="目录分析和包"></a>目录分析和包</h4><p> node在前目录下查找package.json-&gt;index.js-&gt;index.node-&gt;index.json</p>
-<h2 id="模块编译"><a href="#模块编译" class="headerlink" title="模块编译"></a>模块编译</h2><ul>
-<li>js文件 (通过fs模块同步读取文件后编译执行)</li>
-<li>node文件 (用c/c++编写的扩展文件,通过dlopen()方法加载最后编译生成的文件)</li>
-<li>json文件。通过fs模块同步读取文件后，用JSON.parse()解析返回结果。</li>
-<li>其余扩展名文件。它们都被当做.js文件载入</li>
-</ul>
-### js模块编译
-### c/c++模块编译
-<div class="article-context-child-h6">.node的模块文件并不需要编译，因为它是编写C/C++模块之后编译生成的</div>
+        <h2 id="JavaScript数字超过边界值-无法保证低位数字的精度"><a href="#JavaScript数字超过边界值-无法保证低位数字的精度" class="headerlink" title="JavaScript数字超过边界值,无法保证低位数字的精度"></a>JavaScript数字超过边界值,无法保证<code>低位数字</code>的精度</h2><p> 今天在群上讨论说数字精度溢出问题<br> 然后有人举出了,下图的情况:<br> <img src="/janceChun/images/2016-06-01.jpg"><br>由图片看出觉得对哇,好想不会溢出,会被自动处理为科学计算法<br>但是看下图,你会知道其实还是溢出的<br> <img src="/janceChun/images/2016-06-01-1.jpg"><br>超过边界的时候会影响<code>低位数字</code>的精度,所以图1看不出什么影响<br>图2的<code>parseInt(&quot;1&quot;.repeat(53),2)+1</code>;输出<code>9 007 199 254 740 992</code>,<br><code>parseInt(&quot;1&quot;.repeat(53),2)+2</code>;也输出<code>9 007 199 254 740 992</code> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/12/2016-05-12-jekyll/" data-id="ckh9ck9sh0008lvy4amxjg76c" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/06/01/2016-06-01-jekyll/" data-id="ckhc1w6ih000qihy4h53l708a" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-27-1-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/05/27/2016-05-27-1-jekyll/" class="article-date">
+  <time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/05/27/2016-05-27-1-jekyll/">angular 各种库实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结前段时间对angular各种库的实践"><a href="#总结前段时间对angular各种库的实践" class="headerlink" title="总结前段时间对angular各种库的实践"></a>总结前段时间对angular各种库的实践</h3></h3><ul>
+<li>全屏</li>
+<li>loading 遮罩</li>
+<li>ppt轮播</li>
+<li>异步加载</li>
+<li>code编辑器</li>
+<li>图表</li>
+<li>上传<h3 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h3></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hrajchert/angular-screenfull">angular-screenfull</a>    可以实现angular全屏而且不会引入其他库,轻量型<h3 id="loading-遮罩"><a href="#loading-遮罩" class="headerlink" title="loading 遮罩"></a>loading 遮罩</h3></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cgross/angular-busy">angular-busy</a> 根据你想要的某个div区域进行遮罩并显示loading图标<h3 id="ppt轮播"><a href="#ppt轮播" class="headerlink" title="ppt轮播"></a>ppt轮播</h3></li>
+<li><a target="_blank" rel="noopener" href="http://lab.hakim.se/reveal-js/#/">reveal.js</a>    存在缺陷:在ie9下出现问题是css3的动画效果不能用,可以用js的requestAnimationFrame解决<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ocombe/ocLazyLoad">ocLazyLoad</a>    能跟ui-route配合的比较好<h3 id="code编辑器"><a href="#code编辑器" class="headerlink" title="code编辑器"></a>code编辑器</h3></li>
+<li>如果你想实现web代码高亮,像编辑器一样的功能<a target="_blank" rel="noopener" href="https://ace.c9.io/#nav=about">ace</a>就是好选择<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3></li>
+<li>echart :有分require版的和合并版的,同样也是大而全,如果项目里面有require的很适合用</li>
+<li>d3 :大而全,有各种插件,很多api都比较基础,要自己写很多</li>
+<li>hightchart :基于jquery,基础图表齐全</li>
+<li><a target="_blank" rel="noopener" href="http://jtblin.github.io/angular-chart.js/">angular-chart</a> 适合用于纯angular框架,基础图表齐全</li>
+<li>springy能基于zepto 实现向量图,专用向量图</li>
+<li>时间图<a target="_blank" rel="noopener" href="http://almende.github.io/chap-links-library/timeline.html">timeline</a> 简便小,独立<h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/danialfarid/ng-file-upload">ng-file-upload</a>  github start量最多,亲测可用,各种配置齐全</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/05/27/2016-05-27-1-jekyll/" data-id="ckhc1w6if000kihy495sj35tx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li></ul>
 
     </footer>
   </div>
@@ -319,7 +345,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../5/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="page-number current">6</span><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../7/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="../5/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="page-number current">6</span><a class="page-number" href="../7/">7</a><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../7/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -330,7 +356,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry/">Sentry</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry-docker/">Sentry docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
     </div>
   </div>
 
@@ -340,7 +366,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
     </div>
   </div>
 
@@ -350,7 +376,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 10px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 10px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/Sentry/" style="font-size: 13.33px;">Sentry</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 13.33px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 13.33px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/python/" style="font-size: 16.67px;">python</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
     </div>
   </div>
 
@@ -359,7 +385,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -372,23 +398,23 @@
       <ul>
         
           <li>
-            <a href="../../2018/04/03/2018-04-03/">js 事件复习</a>
+            <a href="../../2019/12/04/2019-12-04/">常见问题CSS设置</a>
           </li>
         
           <li>
-            <a href="../../2017/08/30/2017-08-30/">css特殊字体处理</a>
+            <a href="../../2018/10/18/2018-10-18/">docker sentry 配置企业ldap</a>
           </li>
         
           <li>
-            <a href="../../2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+            <a href="../../2018/10/17/2018-10-17/">Sentry部署</a>
           </li>
         
           <li>
-            <a href="../../2017/05/05/2017-05-05/">V8 简介翻译</a>
+            <a href="../../2018/09/01/2018-08-32/">验证码识别入门</a>
           </li>
         
           <li>
-            <a href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+            <a href="../../2018/08/31/2018-08-31/">Scrapy 入门</a>
           </li>
         
       </ul>
@@ -413,7 +439,7 @@
   
     <a href="../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="../../janceChun/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

@@ -15,7 +15,7 @@
 <meta property="article:author" content="janceChun">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+    <link rel="alternate" href="../../atom.xml" title="janceChun" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,12 +46,12 @@
         
           <a class="main-nav-link" href="../../index.html">Home</a>
         
-          <a class="main-nav-link" href="../../janceChun/archives">Archives</a>
+          <a class="main-nav-link" href="../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="../../janceChun/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -64,14 +64,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2017-01-10" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-21" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2017/01/10/2017-01-10/" class="article-date">
-  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+    <a href="../../2017/03/21/2017-03-21/" class="article-date">
+  <time datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/html5/">html5</a>
+    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2017/01/10/2017-01-10/">HTML/HTML5中的download属性</a>
+      <a class="article-title" href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
     </h1>
   
 
@@ -90,31 +90,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="导出文件的配置有以下几种"><a href="#导出文件的配置有以下几种" class="headerlink" title="导出文件的配置有以下几种"></a>导出文件的配置有以下几种</h2><h3 id="后端配置"><a href="#后端配置" class="headerlink" title="后端配置"></a>后端配置</h3><p>在api的http response 头部设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">header(&#39;Content-disposition: attachment; filename&#x3D;fileName.json&#39;);</span><br><span class="line">header(&#39;Content-type: application&#x2F;json&#39;);</span><br></pre></td></tr></table></figure>
-<p>我们只需要通过<code> &lt;a href=&#39;url&#39;&gt;下载文件&lt;/a&gt;</code>就可以下载json文件</p>
-<h3 id="前端配置"><a href="#前端配置" class="headerlink" title="前端配置"></a>前端配置</h3><ul>
-<li><p>如果api的http response 头部没有设置响应信息</p>
-<p>  我们可以用html的<code>download</code>属性</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;url&quot; download&#x3D;&quot;fileName.json&quot;&gt; 导出&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
-<p>  或者采用js的写法</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> json = <span class="built_in">JSON</span>.stringify(data); <span class="comment">// data为api获取到的json数据</span></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([json], &#123;<span class="attr">type</span>: <span class="string">&quot;application/json&quot;</span>&#125;);</span><br><span class="line"><span class="keyword">var</span> url  = URL.createObjectURL(blob);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">a.download    = <span class="string">&quot;backup.json&quot;</span>;</span><br><span class="line">a.href        = url;</span><br><span class="line">a.textContent = <span class="string">&quot;导出&quot;</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;content&#x27;</span>).appendChild(a);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>  两种写法都是采用了HTML5中的download属性,缺点不兼容safari<a target="_blank" rel="noopener" href="http://caniuse.com/#search=download%20attribute">兼容性</a>;</p>
-</li>
-<li><p>在实践中发现Firefox的href下载链接要加上<code>data:application/json;charset=utf-8,</code><br> 才可以启动下载属性</p>
-</li>
-<li><p><code>data:application/json;charset</code>是<a target="_blank" rel="noopener" href="https://sjolzy.cn/What-is-the-data-URI-scheme-and-how-to-use-the-data-URI-scheme.html">Data URI scheme</a>的语法</p>
-</li>
+        <h1 id="Create-First-Open-Source-JavaScript-Library"><a href="#Create-First-Open-Source-JavaScript-Library" class="headerlink" title="Create First  Open Source JavaScript Library   "></a>Create First  Open Source JavaScript Library <a target="_blank" rel="noopener" href="https://travis-ci.org/janceChun/demo"> <img src="https://travis-ci.org/janceChun/demo.svg?branch=master"> </a></h1><p>following by <a target="_blank" rel="noopener" href="https://egghead.io/lessons/javascript-how-to-write-a-javascript-library-configuring-npm-and-creating-a-package-json">How to Write an Open Source JavaScript Library</a></p>
+<h3 id="configuring-npm"><a href="#configuring-npm" class="headerlink" title="configuring npm"></a>configuring npm</h3><ul>
+<li>npm set init-author-name ‘janceChun’</li>
+<li>npm set init-author-url ‘<a href="https://jancechun.github.io/janceChun/&#39;">https://jancechun.github.io/janceChun/&#39;</a></li>
+<li>npm set init-license ‘MIT’</li>
+<li>npm set save-exac true</li>
+<li>cat ~/.npmrc</li>
+<li>npm  adduser</li>
+<li>npm init </li>
 </ul>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p> 下次后端丢给你一个api就不用纠结为啥下载不了文件啦,直接看api返回的http response 有没有文件信息,<br> 如果是单纯json信息又不考虑兼容性可以用download. 如果考虑兼容性就要后端改api response header啦</p>
+<h3 id="publish-git"><a href="#publish-git" class="headerlink" title="publish git"></a>publish git</h3><ul>
+<li>git add -A</li>
+<li>git commit -m  ‘add init’</li>
+<li>git push</li>
+</ul>
+<h3 id="publish-npm"><a href="#publish-npm" class="headerlink" title="publish npm"></a>publish npm</h3><ul>
+<li>npm pubslih </li>
+<li>npm info</li>
+</ul>
+<h3 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h3><ul>
+<li>git tag 0.0.1</li>
+<li>git push –tags</li>
+</ul>
+<h3 id="publish-beta-version"><a href="#publish-beta-version" class="headerlink" title="publish beta version"></a>publish beta version</h3><ul>
+<li> git tag 0.1.0-beta.0</li>
+<li> git push</li>
+<li> git push –tags</li>
+<li> npm publish –tag beta</li>
+<li> npm info </li>
+<li>npm dist-tag ls<br>(<br>u can run git tag 0.1.0-beta.1<br>and then git push –tags &amp;&amp; npm publish –tag beta<br>to update the  npm tag packe.<br>the  customer can npm install janceDemo@beta to update beta package<br>)</li>
+</ul>
+<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><ul>
+<li>npm i -D mocha chai</li>
+</ul>
+<h3 id="releases-with-semantic-release"><a href="#releases-with-semantic-release" class="headerlink" title="releases with  semantic-release"></a>releases with  semantic-release</h3><ul>
+<li>npm install -g semantinc-release-cli</li>
+<li>semantic-release-cli setup</li>
+<li>add .travis.yml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">before_script:</span><br><span class="line">  - npm prune</span><br><span class="line">script:</span><br><span class="line">  - npm run test</span><br><span class="line">after_success:</span><br><span class="line">  - npm run semantic-release</span><br></pre></td></tr></table></figure>
 
+<h3 id="writing-conventional-commits-with-commitizen"><a href="#writing-conventional-commits-with-commitizen" class="headerlink" title="writing conventional commits with commitizen"></a>writing conventional commits with commitizen</h3><ul>
+<li>npm install -D commitizen cz-conventional-changelog</li>
+<li>add package.json</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;commit&quot;:&quot;git-cz&quot;,</span><br><span class="line">   &quot;test&quot;: &quot;mocha src&#x2F;index.test.js -w&quot;,</span><br><span class="line">   &quot;semantic-release&quot;: &quot;semantic-release pre &amp;&amp; npm publish &amp;&amp; semantic-release post&quot;</span><br><span class="line"> &#125;,</span><br><span class="line">  &quot;czConfig&quot;:&#123;</span><br><span class="line">     &quot;path&quot;:&quot;node_modules&#x2F;cz-conventional-changelog&quot;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git add -A</li>
+<li>npm run commit</li>
+</ul>
+<h3 id="commiting-a-new-feature-width-commitizen"><a href="#commiting-a-new-feature-width-commitizen" class="headerlink" title="commiting a new feature width commitizen"></a>commiting a new feature width commitizen</h3><ul>
+<li>npm run commit</li>
+</ul>
+<pre><code>? Select the type of change that you&#39;re committing: feat:     A new feature
+? Denote the scope of this change ($location, $browser, $compile, etc.):
+ random
+? Write a short, imperative tense description of the change:
+ add avility to get an array of names
+? Provide a longer description of the change:
+ if you pass a number to the random function . you will receive an array with the number of randomw
+item
+? List any breaking changes:
+ close #2</code></pre>
+<h3 id="Automatically-releasing-with-TravisCI"><a href="#Automatically-releasing-with-TravisCI" class="headerlink" title="Automatically releasing with TravisCI"></a>Automatically releasing with TravisCI</h3><h3 id="Automatically-running-test-before-commits-with-ghooks"><a href="#Automatically-running-test-before-commits-with-ghooks" class="headerlink" title="Automatically running test before commits with ghooks"></a>Automatically running test before commits with ghooks</h3><h3 id="Adding-code-code-coverage-recording-with-Istanbul"><a href="#Adding-code-code-coverage-recording-with-Istanbul" class="headerlink" title="Adding code code coverage recording with Istanbul"></a>Adding code code coverage recording with Istanbul</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2017/01/10/2017-01-10/" data-id="ckh9ck9t1001wlvy4gukj1n4u" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/03/21/2017-03-21/" data-id="ckhc1w6ix002eihy44sv8h428" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -123,14 +170,14 @@
 
 
   
-    <article id="post-2017-01-09" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-20" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2017/01/09/2017-01-09/" class="article-date">
-  <time datetime="2017-01-08T16:00:00.000Z" itemprop="datePublished">2017-01-09</time>
+    <a href="../../2017/03/20/2017-03-20/" class="article-date">
+  <time datetime="2017-03-19T16:00:00.000Z" itemprop="datePublished">2017-03-20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/docker/">docker</a>
+    <a class="article-category-link" href="../../categories/npm/">npm</a>
   </div>
 
   </div>
@@ -141,7 +188,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2017/01/09/2017-01-09/">docker telegraf grafana实践</a>
+      <a class="article-title" href="../../2017/03/20/2017-03-20/">npm package.json 参数加深理解</a>
     </h1>
   
 
@@ -149,15 +196,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="docker-telegraf-grafana实践"><a href="#docker-telegraf-grafana实践" class="headerlink" title="docker telegraf grafana实践"></a>docker telegraf grafana实践</h2><h3 id="telegraf"><a href="#telegraf" class="headerlink" title="telegraf"></a>telegraf</h3><p> 1.了解数据来源<br> telegrad 的docker插件是采集<a target="_blank" rel="noopener" href="https://github.com/docker/engine-api">docker engine-api</a>的状态,<a target="_blank" rel="noopener" href="https://godoc.org/github.com/docker/engine-api">相关文档说明</a>以及<a target="_blank" rel="noopener" href="https://godoc.org/github.com/docker/engine-api/types#Stats">状态类型说明</a>,<br> 其实就是通过GET /containers/(id or name)/stats.获取相关数据.在linux下你可以通过<br> curl –unix-socket /var/run/docker.sock http:/containers/(id or name)/stats来查看相关数据.<br> 2.数据单位<br> 有了上面知道数据的来源你是不是还在纠结数据的单位,比如为什么cpu值是纳秒?我们怎么转换成核?<br> 经过实践发现他记录的是<br> (待续…)</p>
+        <h2 id="package-json-重要的几个参数"><a href="#package-json-重要的几个参数" class="headerlink" title="package.json 重要的几个参数"></a><a target="_blank" rel="noopener" href="https://docs.npmjs.com/files/package.json#dependencies">package.json</a> 重要的几个参数</h2><h3 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h3><p>  具体说明你的代码存放地。对想要贡献代码的人来说很有用。如果git repo 在 github上，<br>  那么npm docs命令会找到你<br>  像这样做：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">&quot;repository&quot; :</span><br><span class="line">  &#123; &quot;type&quot; : &quot;git&quot;</span><br><span class="line">  , &quot;url&quot; : &quot;https:&#x2F;&#x2F;github.com&#x2F;npm&#x2F;npm.git&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&quot;repository&quot; :</span><br><span class="line">  &#123; &quot;type&quot; : &quot;svn&quot;</span><br><span class="line">  , &quot;url&quot; : &quot;https:&#x2F;&#x2F;v8.googlecode.com&#x2F;svn&#x2F;trunk&#x2F;&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<p>  URL必须是公开可用的（可能只是只读）<br>  URL可以直接被vcs程序处理而不需要任何修改<br>  它不应该是你挂在网上的html工程页面的网址。它是给电脑的</p>
+<p>   GitHub, GitHub gist, Bitbucket, or GitLab repositories 你可以在 npm install中<br>   用以下缩写 </p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">&quot;repository&quot;: &quot;npm&#x2F;npm&quot;</span><br><span class="line"></span><br><span class="line">&quot;repository&quot;: &quot;gist:11081aaa281&quot;</span><br><span class="line"></span><br><span class="line">&quot;repository&quot;: &quot;bitbucket:example&#x2F;repo&quot;</span><br><span class="line"></span><br><span class="line">&quot;repository&quot;: &quot;gitlab:another&#x2F;repo&quot; </span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+
+<h3 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h3><p>  dependencies 是同过一个简单的object来映射包名跟版本范围。版本范围是一个有着一个或者多个space分隔的描述符的string。<br>  dependencies 用tarball 或者 git url<br>  请不要把测试线束或transpilers在依赖对象中。 请参见下面的devDependencies。</p>
+<p>  参考<a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/semver">semver</a>获取更多版本范围的具体说明<br>  <a target="_blank" rel="noopener" href="http://semver.org/lang/zh-CN/">补充版本号格式</a> (版本格式：主版本号.次版本号.修订号)<br>  主版本号：当你做了不兼容的 API 修改，<br>  次版本号：当你做了向下兼容的功能性新增，<br>  修订号：当你做了向下兼容的问题修正（bug fixes）。</p>
+<ul>
+<li>version 对应具体版本</li>
+<li>～version 不改变主版本号跟次版本号</li>
+<li>^version 不改变主版本号（当主版本号为0开始时 ～version 跟 ^version 时一样的【0.0.0 &lt;1.0.0】） </li>
+<li>git… 参考以下的 ‘Git URLs’ </li>
+<li>user/repo 参考以下的 ‘GitHub URLs’ </li>
+<li>tag 特定版本打包发布标记为标签 参考npm-tag</li>
+<li>path/path/path 参考以下的本地路径</li>
+<li>http://… 参考以下的 ‘URLs 压缩包’ </li>
+<li>range1 || range2  range1 或 range2 都可以通过<br>以下都是合理的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;dependencies&quot; :</span><br><span class="line">  &#123; &quot;foo&quot; : &quot;1.0.0 - 2.9999.9999&quot;</span><br><span class="line">  , &quot;bar&quot; : &quot;&gt;&#x3D;1.0.2 &lt;2.1.2&quot;</span><br><span class="line">  , &quot;baz&quot; : &quot;&gt;1.0.2 &lt;&#x3D;2.3.4&quot;</span><br><span class="line">  , &quot;boo&quot; : &quot;2.0.1&quot;</span><br><span class="line">  , &quot;qux&quot; : &quot;&lt;1.0.0 || &gt;&#x3D;2.3.1 &lt;2.4.5 || &gt;&#x3D;2.5.2 &lt;3.0.0&quot;</span><br><span class="line">  , &quot;asd&quot; : &quot;http:&#x2F;&#x2F;asdf.com&#x2F;asdf.tar.gz&quot; &#x2F;&#x2F;你可以指定一个url压缩包</span><br><span class="line">  , &quot;til&quot; : &quot;~1.2&quot;</span><br><span class="line">  , &quot;elf&quot; : &quot;~1.2.3&quot;</span><br><span class="line">  , &quot;two&quot; : &quot;2.x&quot;</span><br><span class="line">  , &quot;thr&quot; : &quot;3.3.x&quot;</span><br><span class="line">  , &quot;lat&quot; : &quot;latest&quot;</span><br><span class="line">  , &quot;dyl&quot; : &quot;file:..&#x2F;dyl&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Git URLs</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git:&#x2F;&#x2F;github.com&#x2F;user&#x2F;project.git#commit-ish</span><br><span class="line">git+ssh:&#x2F;&#x2F;user@hostname:project.git#commit-ish</span><br><span class="line">git+ssh:&#x2F;&#x2F;user@hostname&#x2F;project.git#commit-ish</span><br><span class="line">git+http:&#x2F;&#x2F;user@hostname&#x2F;project&#x2F;blah.git#commit-ish</span><br><span class="line">git+https:&#x2F;&#x2F;user@hostname&#x2F;project&#x2F;blah.git#commit-ish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>commit-ish 可以是任何作为参数提供给git checkout 的tag  sha 或者分支branch。默认是master</p>
+<ol start="2">
+<li><p>GitHub URLs<br>在版本1.1.65，你可以参考github urls 像 “foo”: “user/foo-project”。只是用了<br>git URLs，commit-ish可以加在末尾，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     &quot;name&quot;: &quot;foo&quot;,</span><br><span class="line">     &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line">     &quot;dependencies&quot;: &#123;</span><br><span class="line">       &quot;express&quot;: &quot;visionmedia&#x2F;express&quot;,</span><br><span class="line">       &quot;mocha&quot;: &quot;visionmedia&#x2F;mocha#4727d357ea&quot;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;   </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a>devDependencies</h3><p>如果有人打算下载使用你的模块在他们的项目里，那么他们kennel不想或者没必要下载安置你使用的<br>额外测试或者文档框架。<br>像这种情况，最好吧你额外的选项放在你的devDependencies obeject里面<br>这些会被下载当你在根目录下执行 npm link 或者 npm install，像其他npm 配置参数一样被管理<br>更多请参考参考<a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/config">npm-config</a> </p>
+<p>（简单来说就是开发在项目跟目录下执行npm install 会下载依赖，但是用户使用通过npm install下载你的包<br>不会下载依赖）</p>
+</li>
+</ol>
+<h3 id="peerDependencies"><a href="#peerDependencies" class="headerlink" title="peerDependencies"></a>peerDependencies</h3><p>（… 待续）</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2017/01/09/2017-01-09/" data-id="ckh9ck9t0001slvy42jjagf2s" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/03/20/2017-03-20/" data-id="ckhc1w6ix002fihy455524xo5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li></ul>
 
     </footer>
   </div>
@@ -166,14 +248,14 @@
 
 
   
-    <article id="post-2017-01-08" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2017/01/08/2017-01-08/" class="article-date">
-  <time datetime="2017-01-07T16:00:00.000Z" itemprop="datePublished">2017-01-08</time>
+    <a href="../../2017/03/08/2017-03-08/" class="article-date">
+  <time datetime="2017-03-07T16:00:00.000Z" itemprop="datePublished">2017-03-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/grafana/">grafana</a>
+    <a class="article-category-link" href="../../categories/influxdb/">influxdb</a>
   </div>
 
   </div>
@@ -184,7 +266,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2017/01/08/2017-01-08/">grafana AMD</a>
+      <a class="article-title" href="../../2017/03/08/2017-03-08/">influxdb non_negative_derivative</a>
     </h1>
   
 
@@ -192,23 +274,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>grafana AMD 配置</p>
-<p>经过测试，基本放在<br>public/app<br>public/vendor<br>public/plugins<br>这三个目录下都能被引入</p>
-<p>采用common.js ：写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([], function () &#123;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  function getValue() &#123;</span><br><span class="line">    console.log(&#39;getValue plugins 111&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;getValue:getValue&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后在要引用的dashaboards/a.js里面写上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.import(&#39;plugins&#x2F;common&#39;).then(function(m)&#123;</span><br><span class="line">  m.getValue();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>就可以引用了。</p>
+        <h3 id="所在环境"><a href="#所在环境" class="headerlink" title="所在环境"></a>所在环境</h3><ul>
+<li>influxdb:1.1.1</li>
+<li>grafana:4.1.2 </li>
+</ul>
+<h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>  influxdb non_negative_derivative(sum(field)) group by (time) 导致数据峰值过大</p>
+<p>  参考<a target="_blank" rel="noopener" href="https://github.com/influxdata/influxdb/issues/6451">influxdb issues</a><br>    <a target="_blank" rel="noopener" href="https://github.com/grafana/grafana/issues/3021">grafana issues</a></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>   设置偏移量1， group by time 超过20。<br>   因为实践发现出现问题的group by 时间刚好在10-20之间，我们telegraf 采集时间是10s，所以最小20秒分组可以被接受。<br>   偏移量1是因为不设置的话会出现数据闪动峰值问题</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2017/01/08/2017-01-08/" data-id="ckh9ck9sz001qlvy4errk4hoy" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/03/08/2017-03-08/" data-id="ckhc1w6iw002aihy4ds1vddas" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li></ul>
 
     </footer>
   </div>
@@ -217,14 +297,14 @@
 
 
   
-    <article id="post-2017-01-07" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-02-07" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2017/01/07/2017-01-07/" class="article-date">
-  <time datetime="2017-01-06T16:00:00.000Z" itemprop="datePublished">2017-01-07</time>
+    <a href="../../2017/02/07/2017-02-07/" class="article-date">
+  <time datetime="2017-02-06T16:00:00.000Z" itemprop="datePublished">2017-02-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/js/">js</a>
+    <a class="article-category-link" href="../../categories/npm/">npm</a>
   </div>
 
   </div>
@@ -235,7 +315,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2017/01/07/2017-01-07/">js 代码风格标准</a>
+      <a class="article-title" href="../../2017/02/07/2017-02-07/">搭建企业私有registry实践(二)</a>
     </h1>
   
 
@@ -243,44 +323,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Jslint（检测工具）有以下几种"><a href="#Jslint（检测工具）有以下几种" class="headerlink" title="Jslint（检测工具）有以下几种"></a>Jslint（检测工具）有以下几种</h3><h4 id="jslint"><a href="#jslint" class="headerlink" title="jslint "></a>jslint </h4><pre><code>优点：默认配置好，无需自己再重新定义
-缺点：
-有限的配置选项，很多规则不能禁用
-规范严格，凡是不符合都会有警告
-扩展性差
-无法根据错误定位到对应的规则</code></pre>
-<h3 id="jshint"><a href="#jshint" class="headerlink" title="jshint "></a>jshint </h3><pre><code>优点：
-1.    有了很多参数可以配置
-2.    支持配置文件，方便使用
-3.    支持了一些常用类库
-4.    支持了基本的ES6
-缺点：
-1.    不支持自定义规则
-2.    无法根据错误定位到对应的规则</code></pre>
-<h4 id="eslint"><a href="#eslint" class="headerlink" title="eslint "></a>eslint </h4><pre><code>优点：
-1.    默认规则里面包含了JSLint和JSHint的规则，易于迁移
-2.    可配置为警告和错误两个等级，或者直接禁用掉
-3.    支持插件扩展
-4.    可以自定义规则
-5.    可以根据错误定位到对应的规则
-6.    支持ES6
-7.    唯一一个支持JSX的工具
-8.    文档详细 
-缺点：
-1.    需要进行一些自定义配置
-2.    慢</code></pre>
-<h3 id="Js-style-guides-检测标准"><a href="#Js-style-guides-检测标准" class="headerlink" title="Js style guides (检测标准)"></a>Js style guides (检测标准)</h3><h4 id="airbnb"><a href="#airbnb" class="headerlink" title="airbnb"></a>airbnb</h4><p>文档react 齐全 ，规则覆盖面广， 支持react<br> it covers all aspects of coding in JavaScript right from guidelines for variable declaration, functions, events, test code to performance related tips.</p>
-<h4 id="google"><a href="#google" class="headerlink" title="google"></a>google</h4><p>规则覆盖不如adribnb </p>
-<h4 id="strandard"><a href="#strandard" class="headerlink" title="strandard"></a>strandard</h4><p>精简 ，规则覆盖少 ,各idea都有配置文档</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p> 在js方面使用eslint 检测工具，adribnb<br>检测标准</p>
+        <h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><p>cnpm  2.19.2<br>docker 1.13.0</p>
+<h3 id="一、build-docker-image-以及配置docker-compose"><a href="#一、build-docker-image-以及配置docker-compose" class="headerlink" title="一、build docker image 以及配置docker-compose"></a>一、build docker image 以及配置docker-compose</h3><p>mkdir dockerCnpm<br>cd dockerCnpm<br>touch Dockerfile<br>touch docker-cnmpose.yml<br>1.Dockerfile的内容为</p>
+<pre><code>FROM node:6.9.4
+
+# Working enviroment
+ENV APPDIR /var/app/cnpmjs.org
+ENV CNPMJS_ORG_VERSION 2.19.2
+
+RUN \
+  mkdir /var/app &amp;&amp; \
+  install -o www-data -d /var/app &amp;&amp; \
+  mkdir /var/www/ &amp;&amp; mkdir  /var/www/.cnpmjs.org/ &amp;&amp; chown www-data:www-data -R /var/www
+
+
+USER www-data
+
+RUN \
+  wget -P /tmp https://github.com/cnpm/cnpmjs.org/archive/$&#123;CNPMJS_ORG_VERSION&#125;.tar.gz &amp;&amp; \
+  tar xvzf /tmp/$&#123;CNPMJS_ORG_VERSION&#125;.tar.gz -C /var/app &amp;&amp; \
+  mv /var/app/cnpmjs.org-$&#123;CNPMJS_ORG_VERSION&#125; $&#123;APPDIR&#125;
+
+WORKDIR $&#123;APPDIR&#125;
+
+RUN npm install --build-from-source --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/mirrors/node
+
+
+EXPOSE 7001 7002
+
+# Entrypoint
+CMD [&quot;/usr/local/bin/node&quot;, &quot;/var/app/cnpmjs.org/dispatch.js&quot;]</code></pre>
+<p> npm install –build-from-source –registry=<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> –disturl=<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node">https://npm.taobao.org/mirrors/node</a><br>指定npm install的下载源 ，<br>如果你安装的模块依赖了 C++ 模块, 需要编译, 肯定会通过 node-gyp 来编译,<br>node-gyp 在第一次编译的时候, 需要依赖 node 源代码, 于是又会去 node dist 下载, 这里我们指向<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node%E3%80%82">https://npm.taobao.org/mirrors/node。</a></p>
+<p>2.docker-cnmpose.yml的内容</p>
+<pre><code>cnpm:
+  image: &#39;images&#39;
+  ports:
+     - &quot;7001:7001&quot;
+     - &quot;7002:7002&quot;
+  volumes:
+     - ./config:/var/app/cnpmjs.org/config
+     - ./.cnpmjs.org/:/var/www/.cnpmjs.org/</code></pre>
+<p>挂载config配置，以及数据包存储位置,sync数据包将存放在<code>./.cnpmjs.org/</code>里面。</p>
+<h3 id="二、配置config信息"><a href="#二、配置config信息" class="headerlink" title="二、配置config信息"></a>二、配置config信息</h3><p>在 dockerCnpm目录下创建 config文件夹 ，拷贝源码config 的 index.js文件到dockerCnpm／config／目录下。<br>在dockerCnpm／config／目录下创建自定义config.js。<br>接入企业私有的用户系统DefaultUserService<br>配置相关的数据库信息</p>
+<ol>
+<li><p>具体config.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">function DefaultUserService() &#123;</span><br><span class="line">&#125;</span><br><span class="line">var proto &#x3D; DefaultUserService.prototype;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Auth user with login name and password</span><br><span class="line"> * @param  &#123;String&#125; login    login name</span><br><span class="line"> * @param  &#123;String&#125; password login password</span><br><span class="line"> * @return &#123;User&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">proto.auth &#x3D; function* (login, password) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get user by login name</span><br><span class="line"> * @param  &#123;String&#125; login  login name</span><br><span class="line"> * @return &#123;User&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">proto.get &#x3D; function* (login) &#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * List users</span><br><span class="line"> * @param  &#123;Array&lt;String&gt;&#125; logins  login names</span><br><span class="line"> * @return &#123;Array&lt;User&gt;&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">proto.list &#x3D; function* (logins) &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Search users</span><br><span class="line"> * @param  &#123;String&#125; query  query keyword</span><br><span class="line"> * @param  &#123;Object&#125; [options] optional query params</span><br><span class="line"> *  - &#123;Number&#125; limit match users count, default is &#96;20&#96;</span><br><span class="line"> * @return &#123;Array&lt;User&gt;&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">proto.search &#x3D; function* (query, options) &#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  debug: true,</span><br><span class="line">  enableCluster: true, &#x2F;&#x2F; enable cluster mode</span><br><span class="line">  database: &#123;</span><br><span class="line">    db: &#39;cnpm_test&#39;,</span><br><span class="line">    username: &#39;jance&#39;,</span><br><span class="line">    password: &#39;123&#39;,</span><br><span class="line">    dialect: &#39;mysql&#39;,</span><br><span class="line">    host: &#39;ip&#39;,</span><br><span class="line">    port: &#39;port&#39;,</span><br><span class="line">    pool: &#123;</span><br><span class="line">      maxConnections: 10,</span><br><span class="line">      minConnections: 0,</span><br><span class="line">      &#x2F;&#x2F;maxIdleTime: 30000</span><br><span class="line">    &#125;,</span><br><span class="line">    logging: !!process.env.SQL_DEBUG,</span><br><span class="line">  &#125;,</span><br><span class="line">  enablePrivate: false,&#x2F;&#x2F;允许普通用户上传包</span><br><span class="line">  syncModel: &#39;exist&#39;, &#x2F;&#x2F; &#39;none&#39;, &#39;all&#39;, &#39;exist&#39;,</span><br><span class="line">  userService: new DefaultUserService(),</span><br><span class="line">  customUserService: true,</span><br><span class="line">  logoURL: &#39;&#39;,&#x2F;&#x2F;配置logo</span><br><span class="line">  customReadmeFile:&#39;..&#x2F;my.md&#39;,&#x2F;&#x2F;配置首页文件显示</span><br><span class="line">  customFooter: &#39;ciyy&#39;,&#x2F;&#x2F;配置底部文案</span><br><span class="line">  registryHost: &#39;ip:7001&#39;,&#x2F;&#x2F; 修改registryHost，默认是r.cnpmjs.org，不设置的话，cnpm install 会到r.cnpmjs.org中install包</span><br><span class="line">  &quot;scopes&quot;: [&quot;@org1&quot;, &quot;@org2&quot;]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>值得注意的是用户自定义内部登陆的DefaultUserService，必须包含auth，get，list，search不然会报错。<br><code>registryHost</code>也是个值得留意的配置：默认是r.cnpmjs.org，不设置的话，cnpm install 会到r.cnpmjs.org中install包  </p>
+</li>
+<li><p>关于mysql 表的设置<br>网上有两种方法一种是 cnpmjs.org／docs／db.sql 导入，一种是 node –harmony models/init_script.js。<br>然后我发现第二种方法的表不最新的。所以用第一种方法导入就好.</p>
+</li>
+<li><p>关于多少磁盘够存储<br>目前<a target="_blank" rel="noopener" href="http://registry.npmjs.org/">http://registry.npmjs.org/</a> 的disk_size：2533699713约等于2.36tb<br>有关参考可以看<a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpmjs.org/issues/939">cnpm issues 939</a></p>
+</li>
+</ol>
+<h3 id="三、用户端配置"><a href="#三、用户端配置" class="headerlink" title="三、用户端配置"></a>三、用户端配置</h3><ol>
+<li>使用cnpm</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;ip:7001 --registryweb&#x3D;http:&#x2F;&#x2F;ip:7002</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.alias NPM </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">alias cnpm&#x3D;&quot;npm --registry&#x3D;https:&#x2F;&#x2F;ip:7001 \</span><br><span class="line">--registryweb&#x3D;http:&#x2F;&#x2F;ip:7002 \</span><br><span class="line">--cache&#x3D;$HOME&#x2F;.npm&#x2F;.cache&#x2F;cnpm \</span><br><span class="line">--disturl&#x3D;https:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;node \</span><br><span class="line">--userconfig&#x3D;$HOME&#x2F;.cnpmrc&quot;</span><br><span class="line"></span><br><span class="line">#Or alias it in .bashrc or .zshrc</span><br><span class="line">$ echo &#39;\n#alias for cnpm\nalias cnpm&#x3D;&quot;npm --registry&#x3D;https:&#x2F;&#x2F;ip:7001 \</span><br><span class="line">  --registryweb&#x3D;http:&#x2F;&#x2F;ip:7002 \</span><br><span class="line">  --cache&#x3D;$HOME&#x2F;.npm&#x2F;.cache&#x2F;cnpm \</span><br><span class="line">  --disturl&#x3D;https:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;node \</span><br><span class="line">  --userconfig&#x3D;$HOME&#x2F;.cnpmrc&quot;&#39; &gt;&gt; ~&#x2F;.zshrc &amp;&amp; source ~&#x2F;.zshrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p> 根基以上前两步简单的基础本地磁盘存储的私有registry已经搭建完成，<br> 支持企业内部用户的登陆。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2017/01/07/2017-01-07/" data-id="ckh9ck9sy001mlvy40q4o63o9" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/02/07/2017-02-07/" data-id="ckhc1w6iv0027ihy44678gx2k" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li></ul>
 
     </footer>
   </div>
@@ -289,14 +401,14 @@
 
 
   
-    <article id="post-2016-12-07" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-02-06" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/12/07/2016-12-07/" class="article-date">
-  <time datetime="2016-12-06T16:00:00.000Z" itemprop="datePublished">2016-12-07</time>
+    <a href="../../2017/02/06/2017-02-06/" class="article-date">
+  <time datetime="2017-02-05T16:00:00.000Z" itemprop="datePublished">2017-02-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/WebStorm/">WebStorm</a>
+    <a class="article-category-link" href="../../categories/npm/">npm</a>
   </div>
 
   </div>
@@ -307,7 +419,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/12/07/2016-12-07/">WebStorm 快捷键(Mac)</a>
+      <a class="article-title" href="../../2017/02/06/2017-02-06/">搭建企业私有registry实践(一)</a>
     </h1>
   
 
@@ -315,28 +427,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>⌘——Command</p>
-<p>⌃ ——Control</p>
-<p>⌥——alt</p>
-<p>⇧——Shift</p>
-<p>⇪——Caps Lock</p>
-<p>fn——功能键就是fn</p>
-<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><p>Command+alt+T 用 (if..else, try..catch, for, etc.)包住<br>Command+/ 注释/取消注释的行注释<br>Command+alt+/ 注释/取消注释与块注释<br>alt+↑ 向上选取代码块<br>alt+↓ 向下选取代码块<br>Command+alt+L 格式化代码<br>tab,shift+tab 调整缩进<br>Control+alt+I 快速调整缩进<br>Command+C 复制<br>Command+X 剪切<br>Command+V 粘贴<br>Command+shift+V 从剪贴板里选择粘贴<br>Command+D 复制代码副本<br>Command+delete 删除当前行<br>Control+Shift+J 清除缩进变成单行<br>shift+回车 快速换行<br>Command+回车 换行光标还在原先位置<br>Command+shift+U 大小写转换<br>Command+shift+[,Command+shift+] 文件选项卡快速切换<br>Command+加号,Command+减号 收缩代码块<br>Command+shift+加号，Command+shift+减号 收缩整个文档的代码块<br>Command+W 关闭当前文件选项卡<br>alt+单击 光标在多处定位<br>Control+shift+J 把下面行的缩进收上来<br>shift + F6 高级修改，可快速修改光标所在的标签、变量、函数等<br>alt+/ 代码补全</p>
-<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>Control+alt+R 运行项目<br>Command+Control+R 运行Debug<br>Command+F8 添加断点<br>Command+shift+F8 打开断点列表</p>
-<h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><p>Command+O 跳转到某个类<br>Command+shift+O 跳转到某个文件<br>Command+alt+O 跳转到某个符号<br>Control+←,Control+→ 转到上/下一个编辑器选项卡<br>F12 打开之前打开的工具窗口（TODO、终端等）<br>Command+L 跳转行<br>Command+E 弹出最近文件<br>Command+alt+←,Command+alt+→ 向前向后导航到代码块交接处（一般是空行处）<br>Command+shift+delete 导航到上一个编辑位置的位置<br>Command+B 跳转到变量声明处<br>Control+J 获取变量相关信息（类型、注释等，注释是拿上一行的注释）<br>Command+Y 小浮窗显示变量声明时的行<br>Command+[,Command+] 光标现在的位置和之前的位置切换<br>Command+F12 文件结构弹出式菜单<br>alt+H 类的层次结构<br>F2,shift+F2 切换到上\下一个突出错误的位置<br>Command+↑ 跳转到导航栏<br>F3 添加书签<br>alt+F3 添加带助记的书签<br>alt+1,alt+2… 切换到相应助记的书签位置<br>Command+F3 打开书签列表</p>
-<h3 id="VCS-本地历史记录"><a href="#VCS-本地历史记录" class="headerlink" title="VCS/本地历史记录"></a>VCS/本地历史记录</h3><p>control+V 打开VST小浮窗<br>Command+K 提交项目<br>Command+T 更新项目<br>alt+shift+C 打开最近修改列表</p>
-<h3 id="搜索和替换"><a href="#搜索和替换" class="headerlink" title="搜索和替换"></a>搜索和替换</h3><p>Command+F 搜索<br>Command+R 替换<br>Command+G 查找下一个<br>Command+shift+G 查找下一个<br>Command+shift+F 按路径搜索<br>Command+shift+R 按路径替换</p>
-<h3 id="选中文字的搜索"><a href="#选中文字的搜索" class="headerlink" title="选中文字的搜索"></a>选中文字的搜索</h3><p>Command+F7 向声明的地方搜索并选中<br>Command+shift+F7 打开搜索框进行搜索<br>Command+alt+F7 打开小浮窗显示搜索列表</p>
-<h3 id="对项目文件的操作（重构）"><a href="#对项目文件的操作（重构）" class="headerlink" title="对项目文件的操作（重构）"></a>对项目文件的操作（重构）</h3><p>F5 复制文件到某个目录<br>F6 移动文件到某个目录<br>Command+delete 安全删除<br>shift+F6 重命名</p>
-<h3 id="全局的"><a href="#全局的" class="headerlink" title="全局的"></a>全局的</h3><p>双击shift 弹出小浮窗搜索所有<br>Command+切换项目 Command+shift+ 反向切换项目<br>Command+shift+A 整个工程的查找操作<br>Command+1,Command+2… 打开各种工具窗口<br>alt+shift+F 把文件添加到收藏夹<br>alt+shift+I 打开项目描述<br>alt+~ 快速切换当前计划<br>Command+, 设置编辑器<br>Control+Tab 选项卡和工具窗口之间进行切换<br>alert+回车 显示npm版本升级列表</p>
+        <h2 id="网上找到的三种搭建搭建企业私有registry方式"><a href="#网上找到的三种搭建搭建企业私有registry方式" class="headerlink" title="网上找到的三种搭建搭建企业私有registry方式"></a>网上找到的三种搭建搭建企业私有registry方式</h2><p>一、CouchDB+ npm-registry-couchapp+ kappa（官网提供的方法<a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/registry%EF%BC%89">https://docs.npmjs.com/misc/registry）</a><br><a target="_blank" rel="noopener" href="https://github.com/npm/npm-registry-couchapp">https://github.com/npm/npm-registry-couchapp</a><br>但是npm-registry-couchapp说不会接受任何pull请求，也不会对此代码库进行任何更改。<br>相关的实现与资料有<br><a target="_blank" rel="noopener" href="http://ju.outofmemory.cn/entry/108287">http://ju.outofmemory.cn/entry/108287</a></p>
+<p>二、 cnpm（淘宝镜像搭建，数据库是mysql，最新commit是17年一月）<br><a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpmjs.org">https://github.com/cnpm/cnpmjs.org</a><br>相关实践<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20814612">https://zhuanlan.zhihu.com/p/20814612</a><br><a target="_blank" rel="noopener" href="http://blog.fens.me/nodejs-cnpm-npm/">http://blog.fens.me/nodejs-cnpm-npm/</a><br>另外  有关为什么有cnpm我看到有一篇淘宝的ppt<br><a target="_blank" rel="noopener" href="http://deadhorse.me/slides/npm-enterprise-in-ali.pdf%E3%80%82">http://deadhorse.me/slides/npm-enterprise-in-ali.pdf。</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=tUm8ak5an-4">https://www.youtube.com/watch?v=tUm8ak5an-4</a><br><a target="_blank" rel="noopener" href="http://2014.jsdc.tw/talks/mk2.pdf">http://2014.jsdc.tw/talks/mk2.pdf</a></p>
+<p>三、sinopia<br><a target="_blank" rel="noopener" href="https://github.com/rlidwka/sinopia">https://github.com/rlidwka/sinopia</a><br>sinopia 的更新机制，metadata 是采用 TTL 的方式缓存的，默认缓存时间只有两分钟，两分钟后再次请求同一个包的 metadata 会再次向源去请求最新的信息，虽然 timeout 的话也会返回原本的请求，但我感觉去源取信息太频繁了，而且也绑定在几乎每个请求上（2m 缓存对使用不频繁的小团队根本没解决多少问题啊），所以对时间和网络请求上都会有一些浪费不够合理。另外原版的 sinopia 已经早不维护了，似乎作者不见了踪影（来自<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20715004">https://zhuanlan.zhihu.com/p/20715004</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/12/07/2016-12-07/" data-id="ckh9ck9sw001flvy4h0e0ehjx" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/02/06/2017-02-06/" data-id="ckhc1w6iu0024ihy42tovcr73" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li></ul>
 
     </footer>
   </div>
@@ -349,7 +450,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../2/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="space">&hellip;</span><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../4/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="../2/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="space">&hellip;</span><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../4/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -360,7 +461,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry/">Sentry</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry-docker/">Sentry docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
     </div>
   </div>
 
@@ -370,7 +471,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
     </div>
   </div>
 
@@ -380,7 +481,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 10px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 10px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/Sentry/" style="font-size: 13.33px;">Sentry</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 13.33px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 13.33px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/python/" style="font-size: 16.67px;">python</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
     </div>
   </div>
 
@@ -389,7 +490,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -402,23 +503,23 @@
       <ul>
         
           <li>
-            <a href="../../2018/04/03/2018-04-03/">js 事件复习</a>
+            <a href="../../2019/12/04/2019-12-04/">常见问题CSS设置</a>
           </li>
         
           <li>
-            <a href="../../2017/08/30/2017-08-30/">css特殊字体处理</a>
+            <a href="../../2018/10/18/2018-10-18/">docker sentry 配置企业ldap</a>
           </li>
         
           <li>
-            <a href="../../2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+            <a href="../../2018/10/17/2018-10-17/">Sentry部署</a>
           </li>
         
           <li>
-            <a href="../../2017/05/05/2017-05-05/">V8 简介翻译</a>
+            <a href="../../2018/09/01/2018-08-32/">验证码识别入门</a>
           </li>
         
           <li>
-            <a href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+            <a href="../../2018/08/31/2018-08-31/">Scrapy 入门</a>
           </li>
         
       </ul>
@@ -443,7 +544,7 @@
   
     <a href="../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="../../janceChun/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

@@ -15,7 +15,7 @@
 <meta property="article:author" content="janceChun">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+    <link rel="alternate" href="../../atom.xml" title="janceChun" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,12 +46,12 @@
         
           <a class="main-nav-link" href="../../index.html">Home</a>
         
-          <a class="main-nav-link" href="../../janceChun/archives">Archives</a>
+          <a class="main-nav-link" href="../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="../../janceChun/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -64,14 +64,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-06-28-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-12-07" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/06/28/2016-06-28-jekyll/" class="article-date">
-  <time datetime="2016-06-27T16:00:00.000Z" itemprop="datePublished">2016-06-28</time>
+    <a href="../../2016/12/07/2016-12-07/" class="article-date">
+  <time datetime="2016-12-06T16:00:00.000Z" itemprop="datePublished">2016-12-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/mysql/">mysql</a>
+    <a class="article-category-link" href="../../categories/WebStorm/">WebStorm</a>
   </div>
 
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/06/28/2016-06-28-jekyll/"> 使用brew安装mysql遇到的若干问题的解决方案</a>
+      <a class="article-title" href="../../2016/12/07/2016-12-07/">WebStorm 快捷键(Mac)</a>
     </h1>
   
 
@@ -90,19 +90,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="用homebrew安装mysql-遇到以下三种情况的解决"><a href="#用homebrew安装mysql-遇到以下三种情况的解决" class="headerlink" title="用homebrew安装mysql 遇到以下三种情况的解决"></a>用homebrew安装mysql 遇到以下三种情况的解决</h2><h3 id="ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’-2"><a href="#ERROR-2002-HY000-Can’t-connect-to-local-MySQL-server-through-socket-‘-tmp-mysql-sock’-2" class="headerlink" title="ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)"></a>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</h3><p>  先通过ps aux |grep mysq* 查看mysql是否启动<br>  启动:  证明你的mysql初始化失败,通过以下代码可以解决<br>  不启动: 启动mysql 服务器就好,可以通过<code>mysql.server start</code>或者<code>brew services start mysql</code>启动<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br><span class="line">$ rm -rf /usr/<span class="built_in">local</span>/var/mysql</span><br><span class="line">$ mysqld --initialize</span><br></pre></td></tr></table></figure></p>
-<h3 id="Access-denied-for-user-‘root’-’localhost’"><a href="#Access-denied-for-user-‘root’-’localhost’" class="headerlink" title="Access denied for user ‘root’@’localhost’"></a>Access denied for user ‘root’@’localhost’</h3><p>   先把mysql的所有服务关掉<br>     <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mysqld --skip-grant-tables</span><br><span class="line">$ mysql -u root mysql</span><br><span class="line"><span class="variable">$mysql</span>&gt; update user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;my_password&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$mysql</span>&gt; FLUSH PRIVILEGES;</span><br><span class="line"><span class="variable">$mysql</span>&gt;<span class="built_in">exit</span>;</span><br><span class="line"><span class="variable">$mysql</span>.server restart</span><br></pre></td></tr></table></figure></p>
-<h3 id="the-server-quit-without-updating-PID-file"><a href="#the-server-quit-without-updating-PID-file" class="headerlink" title="the server quit without updating PID file"></a>the server quit without updating PID file</h3><p>   如果不小心kill mysql进程导致这个错误,可以 rm *.err /usr/local/mysql/data/,然后mysql.server start即可</p>
-<p> 参考资料:<a target="_blank" rel="noopener" href="https://xuri.me/2015/11/28/troubleshooting-homebrew-mysql-on-os-x.html">问题1参考</a> , <a target="_blank" rel="noopener" href="http://superuser.com/questions/603026/mysql-how-to-fix-access-denied-for-user-rootlocalhost">问题2参考</a>   </p>
-<p>最后备注一下brew安装后mysql路径:<br>    1. 执行路径: /usr/local/bin/mysql<br>     2. mysql存放路径: /usr/local/Cellar/mysql<br>     3. mysql数据存放路径: /usr/local/var/mysql  </p>
+        <p>⌘——Command</p>
+<p>⌃ ——Control</p>
+<p>⌥——alt</p>
+<p>⇧——Shift</p>
+<p>⇪——Caps Lock</p>
+<p>fn——功能键就是fn</p>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><p>Command+alt+T 用 (if..else, try..catch, for, etc.)包住<br>Command+/ 注释/取消注释的行注释<br>Command+alt+/ 注释/取消注释与块注释<br>alt+↑ 向上选取代码块<br>alt+↓ 向下选取代码块<br>Command+alt+L 格式化代码<br>tab,shift+tab 调整缩进<br>Control+alt+I 快速调整缩进<br>Command+C 复制<br>Command+X 剪切<br>Command+V 粘贴<br>Command+shift+V 从剪贴板里选择粘贴<br>Command+D 复制代码副本<br>Command+delete 删除当前行<br>Control+Shift+J 清除缩进变成单行<br>shift+回车 快速换行<br>Command+回车 换行光标还在原先位置<br>Command+shift+U 大小写转换<br>Command+shift+[,Command+shift+] 文件选项卡快速切换<br>Command+加号,Command+减号 收缩代码块<br>Command+shift+加号，Command+shift+减号 收缩整个文档的代码块<br>Command+W 关闭当前文件选项卡<br>alt+单击 光标在多处定位<br>Control+shift+J 把下面行的缩进收上来<br>shift + F6 高级修改，可快速修改光标所在的标签、变量、函数等<br>alt+/ 代码补全</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>Control+alt+R 运行项目<br>Command+Control+R 运行Debug<br>Command+F8 添加断点<br>Command+shift+F8 打开断点列表</p>
+<h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><p>Command+O 跳转到某个类<br>Command+shift+O 跳转到某个文件<br>Command+alt+O 跳转到某个符号<br>Control+←,Control+→ 转到上/下一个编辑器选项卡<br>F12 打开之前打开的工具窗口（TODO、终端等）<br>Command+L 跳转行<br>Command+E 弹出最近文件<br>Command+alt+←,Command+alt+→ 向前向后导航到代码块交接处（一般是空行处）<br>Command+shift+delete 导航到上一个编辑位置的位置<br>Command+B 跳转到变量声明处<br>Control+J 获取变量相关信息（类型、注释等，注释是拿上一行的注释）<br>Command+Y 小浮窗显示变量声明时的行<br>Command+[,Command+] 光标现在的位置和之前的位置切换<br>Command+F12 文件结构弹出式菜单<br>alt+H 类的层次结构<br>F2,shift+F2 切换到上\下一个突出错误的位置<br>Command+↑ 跳转到导航栏<br>F3 添加书签<br>alt+F3 添加带助记的书签<br>alt+1,alt+2… 切换到相应助记的书签位置<br>Command+F3 打开书签列表</p>
+<h3 id="VCS-本地历史记录"><a href="#VCS-本地历史记录" class="headerlink" title="VCS/本地历史记录"></a>VCS/本地历史记录</h3><p>control+V 打开VST小浮窗<br>Command+K 提交项目<br>Command+T 更新项目<br>alt+shift+C 打开最近修改列表</p>
+<h3 id="搜索和替换"><a href="#搜索和替换" class="headerlink" title="搜索和替换"></a>搜索和替换</h3><p>Command+F 搜索<br>Command+R 替换<br>Command+G 查找下一个<br>Command+shift+G 查找下一个<br>Command+shift+F 按路径搜索<br>Command+shift+R 按路径替换</p>
+<h3 id="选中文字的搜索"><a href="#选中文字的搜索" class="headerlink" title="选中文字的搜索"></a>选中文字的搜索</h3><p>Command+F7 向声明的地方搜索并选中<br>Command+shift+F7 打开搜索框进行搜索<br>Command+alt+F7 打开小浮窗显示搜索列表</p>
+<h3 id="对项目文件的操作（重构）"><a href="#对项目文件的操作（重构）" class="headerlink" title="对项目文件的操作（重构）"></a>对项目文件的操作（重构）</h3><p>F5 复制文件到某个目录<br>F6 移动文件到某个目录<br>Command+delete 安全删除<br>shift+F6 重命名</p>
+<h3 id="全局的"><a href="#全局的" class="headerlink" title="全局的"></a>全局的</h3><p>双击shift 弹出小浮窗搜索所有<br>Command+切换项目 Command+shift+ 反向切换项目<br>Command+shift+A 整个工程的查找操作<br>Command+1,Command+2… 打开各种工具窗口<br>alt+shift+F 把文件添加到收藏夹<br>alt+shift+I 打开项目描述<br>alt+~ 快速切换当前计划<br>Command+, 设置编辑器<br>Control+Tab 选项卡和工具窗口之间进行切换<br>alert+回车 显示npm版本升级列表</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/06/28/2016-06-28-jekyll/" data-id="ckh9ck9sq000xlvy4ag499vnq" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/12/07/2016-12-07/" data-id="ckhc1w6io001fihy49j7u46tg" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li></ul>
 
     </footer>
   </div>
@@ -111,14 +120,14 @@
 
 
   
-    <article id="post-2016-06-22-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-12-08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/06/22/2016-06-22-jekyll/" class="article-date">
-  <time datetime="2016-06-21T16:00:00.000Z" itemprop="datePublished">2016-06-22</time>
+    <a href="../../2016/12/07/2016-12-08/" class="article-date">
+  <time datetime="2016-12-06T16:00:00.000Z" itemprop="datePublished">2016-12-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/mysql/">mysql</a>
+    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
   </div>
 
   </div>
@@ -129,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/06/22/2016-06-22-jekyll/">mysql 编码、模式问题 </a>
+      <a class="article-title" href="../../2016/12/07/2016-12-08/">js promise</a>
     </h1>
   
 
@@ -137,155 +146,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果你想在不修改表字段结构的情况下,又想保存所有数据,可以尝试一下方法  </p>
-<h2 id="报错ER-DATA-TOO-LONG"><a href="#报错ER-DATA-TOO-LONG" class="headerlink" title="报错ER_DATA_TOO_LONG"></a>报错ER_DATA_TOO_LONG</h2><p>  设置sql_mode模式(mysql5.0以上版本支持三种sql_mode模式:ANSI、TRADITIONAL和STRICT_TRANS_TABLES)  </p>
-<table>
-<thead>
-<tr>
-<th align="center">模式</th>
-<th align="center">详情</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ANSI</td>
-<td align="center">宽松模式，对插入数据进行校验，如果不符合定义类型或长度，对数据类型调整或截断保存，报warning警告。</td>
-</tr>
-<tr>
-<td align="center">TRADITIONAL</td>
-<td align="center">严格模式，当向mysql数据库插入数据时，进行数据的严格校验，保证错误数据不能插入，报error错误。用于事物时，会进行事物的回滚。</td>
-</tr>
-<tr>
-<td align="center">STRICT_TRANS_TABLES</td>
-<td align="center">严格模式，进行数据的严格校验，错误数据不能插入，报error错误。</td>
-</tr>
-</tbody></table>
-<ol>
-<li><p>/etc/my.cnf或者在my.ini里找到  </p>
-<div style='font-size:14px; color:#445588'>
-    sql-mode=”STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
-</div>
-把其中的STRICT_TRANS_TABLES去掉</li>
-<li><p>运行以下命令<br>set global  sql_mode=”ANSI”<br>set @@sql_mode=ANSI;<br>select @@sql_mode;//查看当前模式</p>
-<h2 id="报错ER-TRUNCATED-WRONG-VALUE-FOR-FIELD这个是中文编码问题-即使是utf8格式下也会出现"><a href="#报错ER-TRUNCATED-WRONG-VALUE-FOR-FIELD这个是中文编码问题-即使是utf8格式下也会出现" class="headerlink" title="报错ER_TRUNCATED_WRONG_VALUE_FOR_FIELD这个是中文编码问题,即使是utf8格式下也会出现"></a>报错ER_TRUNCATED_WRONG_VALUE_FOR_FIELD这个是中文编码问题,即使是utf8格式下也会出现</h2></li>
-<li><p>在/etc/my.cnf或者在my.ini里(设置utf8mb4编码格式)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set &#x3D; utf8</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-client-handshake &#x3D; false</span><br><span class="line">character-set-server &#x3D; utf8</span><br><span class="line">collation-server &#x3D; utf8mb4_unicode_ci</span><br><span class="line">init_connect&#x3D;&#39;SET NAMES utf8mb4&#39;</span><br></pre></td></tr></table></figure>
+        <h3 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h3><p> promise是抽象异步处理对象以及对其进行各种操作的组件</p>
+<p> 基于回调函数的异步处理(统一参数使用规则)</p>
+<pre><code> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getAsync（<span class="string">&#x27;file.txt&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line"> <span class="function"><span class="title">if</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">throw</span> error;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br></pre></td></tr></table></figure></code></pre>
+<p> 基于promise的异步处理(统一接口)</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise =getAsyncPromise(<span class="string">&quot;file.txt&quot;</span>);</span><br><span class="line"> promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line"> &#125;).catch(error)&#123;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p> 除promise对象规定的方法(then,catch…)以外的方法都是不可以使用的</p>
+<h3 id="promise三个状态-pending、fulfilled、rejected"><a href="#promise三个状态-pending、fulfilled、rejected" class="headerlink" title="promise三个状态:pending、fulfilled、rejected"></a>promise三个状态:pending、fulfilled、rejected</h3><p> 用new Promise 方法创建promise对象</p>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 异步处理</span></span><br><span class="line"><span class="comment">// 处理结束后、调用resolve 或 reject</span></span><br><span class="line">&#125;);   </span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<p> 用.then 或 .catch 添加promise对象的处理函数 (.catch 只是 promise.then(undefined, onRejected) 的别名而已)</p>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<p>   resolve(成功)时<br>    onFulfilled 会被调用<br>    reject(失败)时<br>    onRejected 会被调用<br>    onFulfilled 、onRejected 两个都为可选参数。</p>
+<h3 id="Promise四个静态方法-resolve、reject、all、race"><a href="#Promise四个静态方法-resolve、reject、all、race" class="headerlink" title="Promise四个静态方法:resolve、reject、all、race"></a>Promise四个静态方法:resolve、reject、all、race</h3><ul>
+<li><p>Promise.reject(error) 是和 Promise.resolve(value) 类似的静态方法，是 new Promise() 方法的快捷方式。   </p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="built_in">Promise</span>.resolve($.ajax(<span class="string">&#x27;/json/comment.json&#x27;</span>));<span class="comment">// =&gt; promise对象</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;出错了&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/06/22/2016-06-22-jekyll/" data-id="ckh9ck9sp000ulvy43f1p84o0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-06-01-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/06/01/2016-06-01-jekyll/" class="article-date">
-  <time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/06/01/2016-06-01-jekyll/">js数字溢出问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript数字超过边界值-无法保证低位数字的精度"><a href="#JavaScript数字超过边界值-无法保证低位数字的精度" class="headerlink" title="JavaScript数字超过边界值,无法保证低位数字的精度"></a>JavaScript数字超过边界值,无法保证<code>低位数字</code>的精度</h2><p> 今天在群上讨论说数字精度溢出问题<br> 然后有人举出了,下图的情况:<br> <img src="/janceChun/images/2016-06-01.jpg"><br>由图片看出觉得对哇,好想不会溢出,会被自动处理为科学计算法<br>但是看下图,你会知道其实还是溢出的<br> <img src="/janceChun/images/2016-06-01-1.jpg"><br>超过边界的时候会影响<code>低位数字</code>的精度,所以图1看不出什么影响<br>图2的<code>parseInt(&quot;1&quot;.repeat(53),2)+1</code>;输出<code>9 007 199 254 740 992</code>,<br><code>parseInt(&quot;1&quot;.repeat(53),2)+2</code>;也输出<code>9 007 199 254 740 992</code> </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/06/01/2016-06-01-jekyll/" data-id="ckh9ck9so000qlvy4dcuneabw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-27-1-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/05/27/2016-05-27-1-jekyll/" class="article-date">
-  <time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/27/2016-05-27-1-jekyll/">angular 各种库实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="总结前段时间对angular各种库的实践"><a href="#总结前段时间对angular各种库的实践" class="headerlink" title="总结前段时间对angular各种库的实践"></a>总结前段时间对angular各种库的实践</h3></h3><ul>
-<li>全屏</li>
-<li>loading 遮罩</li>
-<li>ppt轮播</li>
-<li>异步加载</li>
-<li>code编辑器</li>
-<li>图表</li>
-<li>上传<h3 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h3></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/hrajchert/angular-screenfull">angular-screenfull</a>    可以实现angular全屏而且不会引入其他库,轻量型<h3 id="loading-遮罩"><a href="#loading-遮罩" class="headerlink" title="loading 遮罩"></a>loading 遮罩</h3></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/cgross/angular-busy">angular-busy</a> 根据你想要的某个div区域进行遮罩并显示loading图标<h3 id="ppt轮播"><a href="#ppt轮播" class="headerlink" title="ppt轮播"></a>ppt轮播</h3></li>
-<li><a target="_blank" rel="noopener" href="http://lab.hakim.se/reveal-js/#/">reveal.js</a>    存在缺陷:在ie9下出现问题是css3的动画效果不能用,可以用js的requestAnimationFrame解决<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/ocombe/ocLazyLoad">ocLazyLoad</a>    能跟ui-route配合的比较好<h3 id="code编辑器"><a href="#code编辑器" class="headerlink" title="code编辑器"></a>code编辑器</h3></li>
-<li>如果你想实现web代码高亮,像编辑器一样的功能<a target="_blank" rel="noopener" href="https://ace.c9.io/#nav=about">ace</a>就是好选择<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3></li>
-<li>echart :有分require版的和合并版的,同样也是大而全,如果项目里面有require的很适合用</li>
-<li>d3 :大而全,有各种插件,很多api都比较基础,要自己写很多</li>
-<li>hightchart :基于jquery,基础图表齐全</li>
-<li><a target="_blank" rel="noopener" href="http://jtblin.github.io/angular-chart.js/">angular-chart</a> 适合用于纯angular框架,基础图表齐全</li>
-<li>springy能基于zepto 实现向量图,专用向量图</li>
-<li>时间图<a target="_blank" rel="noopener" href="http://almende.github.io/chap-links-library/timeline.html">timeline</a> 简便小,独立<h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/danialfarid/ng-file-upload">ng-file-upload</a>  github start量最多,亲测可用,各种配置齐全</li>
+<li><p>Promise.all接收一个promise对象数组作为参数，当这个数组里的所有promise对象全部变为resolve或reject状态的时候，它才会去调用 .then 方法</p>
+</li>
+<li><p>Promise.race接收一个promise对象数组为参数, 只要有一个promise对象进入FulFilled 或者 Rejected 状态的话，就会调用 .then 方法</p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/27/2016-05-27-1-jekyll/" data-id="ckh9ck9sn000jlvy42irbh35n" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/12/07/2016-12-08/" data-id="ckhc1w6ip001kihy4dk115tpy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li></ul>
 
     </footer>
   </div>
@@ -294,14 +184,14 @@
 
 
   
-    <article id="post-2016-05-27-2-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-11-29" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/05/27/2016-05-27-2-jekyll/" class="article-date">
-  <time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time>
+    <a href="../../2016/11/29/2016-11-29/" class="article-date">
+  <time datetime="2016-11-28T16:00:00.000Z" itemprop="datePublished">2016-11-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../categories/git/">git</a>
+    <a class="article-category-link" href="../../categories/hexo/">hexo</a>
   </div>
 
   </div>
@@ -312,7 +202,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/05/27/2016-05-27-2-jekyll/">git 小常识</a>
+      <a class="article-title" href="../../2016/11/29/2016-11-29/">jekyll 迁移到 hexo</a>
     </h1>
   
 
@@ -320,20 +210,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="git-小常识"><a href="#git-小常识" class="headerlink" title="git 小常识"></a>git 小常识</h2><h3 id="有个文件经常修改-但是又不能提交-处理情况"><a href="#有个文件经常修改-但是又不能提交-处理情况" class="headerlink" title="有个文件经常修改,但是又不能提交,处理情况"></a>有个文件经常修改,但是又不能提交,处理情况</h3><p>git(git version  2.8.3) 要忽略一个文件提交要在 .git/hooks/ 文件下加上 pre-commit</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">git diff --cached --name-only | grep -E <span class="string">&#x27;fileName&#x27;</span></span><br><span class="line">&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>[$? -eq 0];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;不能把fileName提交了&#x27;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+        <h2 id="jekyll-迁移到-hexo-注意事项"><a href="#jekyll-迁移到-hexo-注意事项" class="headerlink" title="jekyll 迁移到 hexo 注意事项"></a>jekyll 迁移到 hexo 注意事项</h2><p>   heightlight 写法改变<br>   image 写法由images标签改为其他写法<br>   table 标签会出现空白<br>   categories 不能加逗号</p>
+<h2 id="hexo-常用命令"><a href="#hexo-常用命令" class="headerlink" title="hexo 常用命令"></a>hexo 常用命令</h2><p>   hexo clean 清除掉public文件<br>   hexo g    生成public文件<br>   hexo d    发布到github上<br>   hexo s    本地调试<br>   hexo new page 添加新的页面</p>
+<h2 id="给网站加上访问次数"><a href="#给网站加上访问次数" class="headerlink" title="给网站加上访问次数"></a>给网站加上访问次数</h2><p>   引入js</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>   对应jade加上</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.visitor</span><br><span class="line">  div#busuanzi_container_site_pv 访问次数</span><br><span class="line">    span#busuanzi_value_site_pv</span><br><span class="line">    span 次</span><br><span class="line">.visitor</span><br><span class="line">  div#busuanzi_container_site_uv 访问人数</span><br><span class="line">    span#busuanzi_value_site_uv</span><br><span class="line">    span 人</span><br></pre></td></tr></table></figure>
 
-<p>如果pre commit 文件没有运行,执行以下语句:<br>chmod +x .git/hooks/pre-commit</p>
-<h3 id="git-commit-之前还可以-save-stash"><a href="#git-commit-之前还可以-save-stash" class="headerlink" title="git commit 之前还可以 save stash"></a>git commit 之前还可以 save stash</h3><h3 id="git-commit-只要不是push-还可以Roll-back"><a href="#git-commit-只要不是push-还可以Roll-back" class="headerlink" title="git commit 只要不是push 还可以Roll back"></a>git commit 只要不是push 还可以Roll back</h3><p>最后附带<a href='https://git-scm.com/book/zh/v2' target='_blank'>git 学习地址</a></p>
-<p>感谢<a href='https://www.douban.com/people/56165402/' target='_blank'>肥昊</a>同学!</p>
+<h2 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h2><p>  hexo 对markdown的支持比较好<br>  jekyll 对html的支持比较好</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/05/27/2016-05-27-2-jekyll/" data-id="ckh9ck9so000nlvy4a0qdda3p" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2016/11/29/2016-11-29/" data-id="ckhc1w6io001cihy44engeos7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/git/" rel="tag">git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-30-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/08/30/2016-08-30-jekyll/" class="article-date">
+  <time datetime="2016-08-29T16:00:00.000Z" itemprop="datePublished">2016-08-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/08/30/2016-08-30-jekyll/">nodejs 快速搭建前后端分离</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前后端分离问题"><a href="#前后端分离问题" class="headerlink" title="前后端分离问题"></a>前后端分离问题</h2><p>思路:前端用<code>nodejs</code>搭建一个工程的服务,将相关的后端api请求转移到后端服务器中  </p>
+<h2 id="方法一采用koa搭建自己的服务器"><a href="#方法一采用koa搭建自己的服务器" class="headerlink" title="方法一采用koa搭建自己的服务器"></a>方法一采用koa搭建自己的服务器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by jance on 16/8/30.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> serve = <span class="built_in">require</span>(<span class="string">&#x27;koa-static&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> koa = <span class="built_in">require</span>(<span class="string">&#x27;koa&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = koa();</span><br><span class="line"><span class="keyword">var</span> path=<span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> proxy=<span class="built_in">require</span>(<span class="string">&#x27;koa-proxy&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> router = <span class="built_in">require</span>(<span class="string">&#x27;koa-router&#x27;</span>)()</span><br><span class="line"><span class="keyword">var</span> convert= <span class="built_in">require</span>(<span class="string">&#x27;koa-convert&#x27;</span>);</span><br><span class="line">app</span><br><span class="line">  .use(router.routes())</span><br><span class="line">  .use(router.allowedMethods())</span><br><span class="line"> router</span><br><span class="line">    .get(<span class="string">&#x27;/(api|auth|static)/*&#x27;</span>, proxy(&#123;</span><br><span class="line">      host: <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>,</span><br><span class="line">      map: <span class="function"><span class="keyword">function</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;))</span><br><span class="line">    .post(<span class="string">&#x27;/*&#x27;</span>, proxy(&#123;</span><br><span class="line">      host: <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>,</span><br><span class="line">      map: <span class="function"><span class="keyword">function</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;))</span><br><span class="line">app.use(serve(path.resolve(__dirname, <span class="string">&#x27;..&#x27;</span>)));</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;listening on port 3000&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="方法二-采用browser-sync-跟http-proxy-搭建"><a href="#方法二-采用browser-sync-跟http-proxy-搭建" class="headerlink" title="方法二 采用browser-sync 跟http-proxy 搭建"></a>方法二 采用browser-sync 跟http-proxy 搭建</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">&#x27;browser-sync&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> httpProxy = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* This configuration allow you to configure browser sync to proxy your backend */</span></span><br><span class="line"><span class="keyword">var</span> proxyTarget = <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>; <span class="comment">// The location of your backend</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> proxy = httpProxy.createProxyServer(&#123;</span><br><span class="line">  target: proxyTarget</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* proxyMiddleware forwards static file requests to BrowserSync server</span></span><br><span class="line"><span class="comment">   and forwards dynamic requests to your real backend */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxyMiddleware</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/</span>.test(req.url)) &#123;</span><br><span class="line">    res.setHeader(<span class="string">&#x27;set-cookie&#x27;</span>, <span class="string">&#x27;csrftoken=true&#x27;</span>);</span><br><span class="line">    next();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.setHeader(<span class="string">&#x27;set-cookie&#x27;</span>, <span class="string">&#x27;csrftoken=true&#x27;</span>);</span><br><span class="line">    proxy.web(req, res);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">browserSyncInit</span>(<span class="params">baseDir, files, browser</span>) </span>&#123;</span><br><span class="line">  browser = browser === <span class="literal">undefined</span> ? <span class="string">&#x27;default&#x27;</span> : browser;</span><br><span class="line"></span><br><span class="line">  browserSync.instance = browserSync.init(files, &#123;</span><br><span class="line">    startPath: <span class="string">&#x27;/django_templates/base.html&#x27;</span>,</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: baseDir,</span><br><span class="line">      middleware: proxyMiddleware</span><br><span class="line">    &#125;,</span><br><span class="line">    browser: browser</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">&#x27;serve&#x27;</span>, [<span class="string">&#x27;watch&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  browserSyncInit([</span><br><span class="line">    <span class="string">&#x27;app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;.tmp&#x27;</span></span><br><span class="line">  ], [</span><br><span class="line">    <span class="string">&#x27;app/*.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/styles/**/*.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;.tmp/styles/**/*.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/scripts/**/*.js&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/partials/**/*.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/janceChun/images/**/*&#x27;</span></span><br><span class="line">  ]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="走过的弯路"><a href="#走过的弯路" class="headerlink" title="走过的弯路"></a>走过的弯路</h2><p>采用<code>gulp-webserver</code> 搭建服务,自己mock返回数据(相比以上nodejs搭建的的方法,你要自己mock很多后端api数据,麻烦了很多)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> webserver = <span class="built_in">require</span>(<span class="string">&#x27;gulp-webserver&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mockBackend</span>(<span class="params">res, json</span>) </span>&#123;</span><br><span class="line">  res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">  res.end(<span class="built_in">JSON</span>.stringify(json));</span><br><span class="line">&#125;</span><br><span class="line">gulp.task(<span class="string">&#x27;wl&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> json;</span><br><span class="line">  gulp.src(<span class="string">&#x27;app/&#x27;</span>)</span><br><span class="line">    .pipe(webserver(&#123;</span><br><span class="line">      livereload: <span class="literal">false</span>,</span><br><span class="line">      open: <span class="literal">true</span>,</span><br><span class="line">      directoryListing: &#123;</span><br><span class="line">        enable: <span class="literal">true</span>,</span><br><span class="line">        path: <span class="string">&#x27;app/&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      host: <span class="string">&#x27;0.0.0.0&#x27;</span>,</span><br><span class="line">      port: <span class="number">6789</span>,</span><br><span class="line">      <span class="comment">// 这里是关键！</span></span><br><span class="line">      middleware: <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(req.url);</span><br><span class="line">        <span class="keyword">switch</span> (req.url) &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">&#x27;/auth/login/&#x27;</span>:</span><br><span class="line">            json = <span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">&#x27;./stub_server_data/auth/auth.json&#x27;</span>));</span><br><span class="line">            mockBackend(res, json.login);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        next();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/08/30/2016-08-30-jekyll/" data-id="ckhc1w6im0018ihy4a44s5y1p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-15-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2016/07/15/2016-07-15-jekyll/" class="article-date">
+  <time datetime="2016-07-14T16:00:00.000Z" itemprop="datePublished">2016-07-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/svn/">svn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2016/07/15/2016-07-15-jekyll/">svn 超级实用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>svn log -r version -v<br>查看该版本的提交修改文件路径信息(Changed paths:XXX.*)</li>
+<li>svn log | sed -n ‘/USERNAME/,/—–$/ p’<br>查看该用户USERNAME,提交的xinx</li>
+<li>svn diff -c version<br>查看该版本的提交文件修改详情</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2016/07/15/2016-07-15-jekyll/" data-id="ckhc1w6il0015ihy49u4lfabu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li></ul>
 
     </footer>
   </div>
@@ -346,7 +332,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../4/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span><a class="page-number" href="../6/">6</a><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../6/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="../4/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span><a class="page-number" href="../6/">6</a><a class="page-number" href="../7/">7</a><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../6/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -357,7 +343,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry/">Sentry</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry-docker/">Sentry docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
     </div>
   </div>
 
@@ -367,7 +353,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
     </div>
   </div>
 
@@ -377,7 +363,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 10px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 10px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/Sentry/" style="font-size: 13.33px;">Sentry</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 13.33px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 13.33px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/python/" style="font-size: 16.67px;">python</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
     </div>
   </div>
 
@@ -386,7 +372,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -399,23 +385,23 @@
       <ul>
         
           <li>
-            <a href="../../2018/04/03/2018-04-03/">js 事件复习</a>
+            <a href="../../2019/12/04/2019-12-04/">常见问题CSS设置</a>
           </li>
         
           <li>
-            <a href="../../2017/08/30/2017-08-30/">css特殊字体处理</a>
+            <a href="../../2018/10/18/2018-10-18/">docker sentry 配置企业ldap</a>
           </li>
         
           <li>
-            <a href="../../2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+            <a href="../../2018/10/17/2018-10-17/">Sentry部署</a>
           </li>
         
           <li>
-            <a href="../../2017/05/05/2017-05-05/">V8 简介翻译</a>
+            <a href="../../2018/09/01/2018-08-32/">验证码识别入门</a>
           </li>
         
           <li>
-            <a href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+            <a href="../../2018/08/31/2018-08-31/">Scrapy 入门</a>
           </li>
         
       </ul>
@@ -440,7 +426,7 @@
   
     <a href="../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="../../janceChun/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     

@@ -15,7 +15,7 @@
 <meta property="article:author" content="janceChun">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="../../janceChun/atom.xml" title="janceChun" type="application/atom+xml">
+    <link rel="alternate" href="../../atom.xml" title="janceChun" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,12 +46,12 @@
         
           <a class="main-nav-link" href="../../index.html">Home</a>
         
-          <a class="main-nav-link" href="../../janceChun/archives">Archives</a>
+          <a class="main-nav-link" href="../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="../../janceChun/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-12-08" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-01-11" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/12/07/2016-12-08/" class="article-date">
-  <time datetime="2016-12-06T16:00:00.000Z" itemprop="datePublished">2016-12-07</time>
+    <a href="../../2017/01/11/2017-01-11/" class="article-date">
+  <time datetime="2017-01-10T16:00:00.000Z" itemprop="datePublished">2017-01-11</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/12/07/2016-12-08/">js promise</a>
+      <a class="article-title" href="../../2017/01/11/2017-01-11/">JavaScript数据类型与数据结构</a>
     </h1>
   
 
@@ -90,36 +90,106 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h3><p> promise是抽象异步处理对象以及对其进行各种操作的组件</p>
-<p> 基于回调函数的异步处理(统一参数使用规则)</p>
-<pre><code> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getAsync（<span class="string">&#x27;file.txt&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line"> <span class="function"><span class="title">if</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">throw</span> error;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br></pre></td></tr></table></figure></code></pre>
-<p> 基于promise的异步处理(统一接口)</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise =getAsyncPromise(<span class="string">&quot;file.txt&quot;</span>);</span><br><span class="line"> promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line"> &#125;).catch(error)&#123;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-<p> 除promise对象规定的方法(then,catch…)以外的方法都是不可以使用的</p>
-<h3 id="promise三个状态-pending、fulfilled、rejected"><a href="#promise三个状态-pending、fulfilled、rejected" class="headerlink" title="promise三个状态:pending、fulfilled、rejected"></a>promise三个状态:pending、fulfilled、rejected</h3><p> 用new Promise 方法创建promise对象</p>
-<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 异步处理</span></span><br><span class="line"><span class="comment">// 处理结束后、调用resolve 或 reject</span></span><br><span class="line">&#125;);   </span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
-<p> 用.then 或 .catch 添加promise对象的处理函数 (.catch 只是 promise.then(undefined, onRejected) 的别名而已)</p>
-<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
-<p>   resolve(成功)时<br>    onFulfilled 会被调用<br>    reject(失败)时<br>    onRejected 会被调用<br>    onFulfilled 、onRejected 两个都为可选参数。</p>
-<h3 id="Promise四个静态方法-resolve、reject、all、race"><a href="#Promise四个静态方法-resolve、reject、all、race" class="headerlink" title="Promise四个静态方法:resolve、reject、all、race"></a>Promise四个静态方法:resolve、reject、all、race</h3><ul>
-<li><p>Promise.reject(error) 是和 Promise.resolve(value) 类似的静态方法，是 new Promise() 方法的快捷方式。   </p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="built_in">Promise</span>.resolve($.ajax(<span class="string">&#x27;/json/comment.json&#x27;</span>));<span class="comment">// =&gt; promise对象</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>什么是数据类型?<br><code>数据类型</code>(Data type)是用来<code>约束数据</code>的解释<br>JavaScript语言可以识别下面 7 种不同类型的值：<br>6 种 <code>基本数据类型(也叫原始类型)</code>:</p>
+<blockquote>
+<p>   Boolean<br>    Null<br>    Undefined<br>    Number<br>    String<br>    Symbol (ECMAScript 6 新定义)–符号类型</p>
+</blockquote>
+<p>基本类型的变量是存放在栈内存（Stack）里的<br>但是为什么有人说js里面一切皆为对象呢? 三种原始类型的值——数值、字符串、布尔值——在一定条件下，也会自动转为对象，也就是原始类型的<a target="_blank" rel="noopener" href="http://javascript.ruanyifeng.com/stdlib/wrapper.html">“包装对象”</a></p>
+<p>1 种 <code>引用类型</code>:</p>
+<blockquote>
+<p>Object</p>
+</blockquote>
+<p>Object又分为以下几种类型：</p>
+<ul>
+<li>Function</li>
+<li>Array</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error(ReferenceError同作用域判别失败相关,而TypeError对结果的操作是非法或不合理的)</li>
+</ul>
+<p>引用类型的值是保存在堆内存（Heap）中的对象（Object）<br>与其他编程语言不同，JavaScript 不能直接操作对象的内存空间（堆内存）。   </p>
+<blockquote>
+<p>到目前为止，我们看到的大多数引用类型值都是 Object 类型的实例；而且，Object 也是 ECMAScript 中使用最多的一个类型。虽然 Object 的实例不具备多少功能，但对于在应用程序中存储和传输数据而言，它们确实是非常理想的选择。——《JavaScript高级程序设计（第3版）》</p>
+</blockquote>
+<p>  参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript">js的数据类型</a> <a target="_blank" rel="noopener" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-types">ECMAScript Language Types</a></p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>什么是数据结构?<br>数据结构（英语：data structure）是计算机中存储、组织数据的方式。<br>数据结构可透过程序语言所提供的数据类型、引用及其他操作加以实现<br>常见的数据结构有数组,堆栈,队列,链表,数,图,堆,散列表.</p>
+<p>基于<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">原型链继承</a>上讲，Javascript 只有一种结构，那就是：对象。</p>
+<!--原生对象(包含 内置对象) -->
 
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;出错了&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<!--宿主对象-->
+
+<h3 id="常用的判断数据类型的方法"><a href="#常用的判断数据类型的方法" class="headerlink" title="常用的判断数据类型的方法"></a>常用的判断数据类型的方法</h3><p>typeof操作符返回一个字符串,指示未经计算的操作数的类型。<br><code>typeof</code>会把<code>null ,[] </code>都判断为<code>object</code><br>instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上<br><code>instanceof</code>会把 <code>[]</code>判断为<code>object</code><br>Object.prototype.toString.call() 来获取每个对象的类型<br>经过测试 <code>Object.prototype.toString.call</code>获取类型最为准确,   </p>
+<h3 id="补充看到的一个笔试题"><a href="#补充看到的一个笔试题" class="headerlink" title="补充看到的一个笔试题"></a>补充看到的一个笔试题</h3>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var  obj&#x3D;&#123;push:Array.prototype.push,length:4&#125;; obj.push(&#39;a&#39;);  obj.length</span><br></pre></td></tr></table></figure>
+<p>   问length是多少? 5; obj是什么类型? object<br>   类似问题还有</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var associative_array &#x3D; new Array();</span><br><span class="line">associative_array[&quot;one&quot;] &#x3D; &quot;Lorem&quot;;</span><br><span class="line">associative_array[&quot;two&quot;] &#x3D; &quot;Ipsum&quot;;</span><br><span class="line">associative_array[&quot;three&quot;] &#x3D; &quot;dolor&quot;;</span><br></pre></td></tr></table></figure>
+<p>   associative_array 的length 是多少? 0 ; associative_array是什么类型? Array.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/01/11/2017-01-11/" data-id="ckhc1w6it0020ihy4777tab5o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-01-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2017/01/10/2017-01-10/" class="article-date">
+  <time datetime="2017-01-09T16:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/html5/">html5</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2017/01/10/2017-01-10/">HTML/HTML5中的download属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="导出文件的配置有以下几种"><a href="#导出文件的配置有以下几种" class="headerlink" title="导出文件的配置有以下几种"></a>导出文件的配置有以下几种</h2><h3 id="后端配置"><a href="#后端配置" class="headerlink" title="后端配置"></a>后端配置</h3><p>在api的http response 头部设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">header(&#39;Content-disposition: attachment; filename&#x3D;fileName.json&#39;);</span><br><span class="line">header(&#39;Content-type: application&#x2F;json&#39;);</span><br></pre></td></tr></table></figure>
+<p>我们只需要通过<code> &lt;a href=&#39;url&#39;&gt;下载文件&lt;/a&gt;</code>就可以下载json文件</p>
+<h3 id="前端配置"><a href="#前端配置" class="headerlink" title="前端配置"></a>前端配置</h3><ul>
+<li><p>如果api的http response 头部没有设置响应信息</p>
+<p>  我们可以用html的<code>download</code>属性</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;url&quot; download&#x3D;&quot;fileName.json&quot;&gt; 导出&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+<p>  或者采用js的写法</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> json = <span class="built_in">JSON</span>.stringify(data); <span class="comment">// data为api获取到的json数据</span></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([json], &#123;<span class="attr">type</span>: <span class="string">&quot;application/json&quot;</span>&#125;);</span><br><span class="line"><span class="keyword">var</span> url  = URL.createObjectURL(blob);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">a.download    = <span class="string">&quot;backup.json&quot;</span>;</span><br><span class="line">a.href        = url;</span><br><span class="line">a.textContent = <span class="string">&quot;导出&quot;</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;content&#x27;</span>).appendChild(a);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  两种写法都是采用了HTML5中的download属性,缺点不兼容safari<a target="_blank" rel="noopener" href="http://caniuse.com/#search=download%20attribute">兼容性</a>;</p>
 </li>
-<li><p>Promise.all接收一个promise对象数组作为参数，当这个数组里的所有promise对象全部变为resolve或reject状态的时候，它才会去调用 .then 方法</p>
+<li><p>在实践中发现Firefox的href下载链接要加上<code>data:application/json;charset=utf-8,</code><br> 才可以启动下载属性</p>
 </li>
-<li><p>Promise.race接收一个promise对象数组为参数, 只要有一个promise对象进入FulFilled 或者 Rejected 状态的话，就会调用 .then 方法</p>
+<li><p><code>data:application/json;charset</code>是<a target="_blank" rel="noopener" href="https://sjolzy.cn/What-is-the-data-URI-scheme-and-how-to-use-the-data-URI-scheme.html">Data URI scheme</a>的语法</p>
 </li>
 </ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p> 下次后端丢给你一个api就不用纠结为啥下载不了文件啦,直接看api返回的http response 有没有文件信息,<br> 如果是单纯json信息又不考虑兼容性可以用download. 如果考虑兼容性就要后端改api response header啦</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/12/07/2016-12-08/" data-id="ckh9ck9sx001klvy4a3hbcl5b" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/01/10/2017-01-10/" data-id="ckhc1w6it001xihy4aws7dng2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li></ul>
 
     </footer>
   </div>
@@ -128,154 +198,10 @@
 
 
   
-    <article id="post-2016-11-29" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-01-09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="../../2016/11/29/2016-11-29/" class="article-date">
-  <time datetime="2016-11-28T16:00:00.000Z" itemprop="datePublished">2016-11-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/hexo/">hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/11/29/2016-11-29/">jekyll 迁移到 hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="jekyll-迁移到-hexo-注意事项"><a href="#jekyll-迁移到-hexo-注意事项" class="headerlink" title="jekyll 迁移到 hexo 注意事项"></a>jekyll 迁移到 hexo 注意事项</h2><p>   heightlight 写法改变<br>   image 写法由images标签改为其他写法<br>   table 标签会出现空白<br>   categories 不能加逗号</p>
-<h2 id="hexo-常用命令"><a href="#hexo-常用命令" class="headerlink" title="hexo 常用命令"></a>hexo 常用命令</h2><p>   hexo clean 清除掉public文件<br>   hexo g    生成public文件<br>   hexo d    发布到github上<br>   hexo s    本地调试<br>   hexo new page 添加新的页面</p>
-<h2 id="给网站加上访问次数"><a href="#给网站加上访问次数" class="headerlink" title="给网站加上访问次数"></a>给网站加上访问次数</h2><p>   引入js</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>   对应jade加上</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.visitor</span><br><span class="line">  div#busuanzi_container_site_pv 访问次数</span><br><span class="line">    span#busuanzi_value_site_pv</span><br><span class="line">    span 次</span><br><span class="line">.visitor</span><br><span class="line">  div#busuanzi_container_site_uv 访问人数</span><br><span class="line">    span#busuanzi_value_site_uv</span><br><span class="line">    span 人</span><br></pre></td></tr></table></figure>
-
-<h2 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h2><p>  hexo 对markdown的支持比较好<br>  jekyll 对html的支持比较好</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/11/29/2016-11-29/" data-id="ckh9ck9sv001clvy4f85o8iq2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-08-30-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/08/30/2016-08-30-jekyll/" class="article-date">
-  <time datetime="2016-08-29T16:00:00.000Z" itemprop="datePublished">2016-08-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/08/30/2016-08-30-jekyll/">nodejs 快速搭建前后端分离</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前后端分离问题"><a href="#前后端分离问题" class="headerlink" title="前后端分离问题"></a>前后端分离问题</h2><p>思路:前端用<code>nodejs</code>搭建一个工程的服务,将相关的后端api请求转移到后端服务器中  </p>
-<h2 id="方法一采用koa搭建自己的服务器"><a href="#方法一采用koa搭建自己的服务器" class="headerlink" title="方法一采用koa搭建自己的服务器"></a>方法一采用koa搭建自己的服务器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by jance on 16/8/30.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> serve = <span class="built_in">require</span>(<span class="string">&#x27;koa-static&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> koa = <span class="built_in">require</span>(<span class="string">&#x27;koa&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = koa();</span><br><span class="line"><span class="keyword">var</span> path=<span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> proxy=<span class="built_in">require</span>(<span class="string">&#x27;koa-proxy&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> router = <span class="built_in">require</span>(<span class="string">&#x27;koa-router&#x27;</span>)()</span><br><span class="line"><span class="keyword">var</span> convert= <span class="built_in">require</span>(<span class="string">&#x27;koa-convert&#x27;</span>);</span><br><span class="line">app</span><br><span class="line">  .use(router.routes())</span><br><span class="line">  .use(router.allowedMethods())</span><br><span class="line"> router</span><br><span class="line">    .get(<span class="string">&#x27;/(api|auth|static)/*&#x27;</span>, proxy(&#123;</span><br><span class="line">      host: <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>,</span><br><span class="line">      map: <span class="function"><span class="keyword">function</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;))</span><br><span class="line">    .post(<span class="string">&#x27;/*&#x27;</span>, proxy(&#123;</span><br><span class="line">      host: <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>,</span><br><span class="line">      map: <span class="function"><span class="keyword">function</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;))</span><br><span class="line">app.use(serve(path.resolve(__dirname, <span class="string">&#x27;..&#x27;</span>)));</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;listening on port 3000&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="方法二-采用browser-sync-跟http-proxy-搭建"><a href="#方法二-采用browser-sync-跟http-proxy-搭建" class="headerlink" title="方法二 采用browser-sync 跟http-proxy 搭建"></a>方法二 采用browser-sync 跟http-proxy 搭建</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">&#x27;browser-sync&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> httpProxy = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* This configuration allow you to configure browser sync to proxy your backend */</span></span><br><span class="line"><span class="keyword">var</span> proxyTarget = <span class="string">&#x27;http://127.0.0.1:5555/&#x27;</span>; <span class="comment">// The location of your backend</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> proxy = httpProxy.createProxyServer(&#123;</span><br><span class="line">  target: proxyTarget</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* proxyMiddleware forwards static file requests to BrowserSync server</span></span><br><span class="line"><span class="comment">   and forwards dynamic requests to your real backend */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxyMiddleware</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/</span>.test(req.url)) &#123;</span><br><span class="line">    res.setHeader(<span class="string">&#x27;set-cookie&#x27;</span>, <span class="string">&#x27;csrftoken=true&#x27;</span>);</span><br><span class="line">    next();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.setHeader(<span class="string">&#x27;set-cookie&#x27;</span>, <span class="string">&#x27;csrftoken=true&#x27;</span>);</span><br><span class="line">    proxy.web(req, res);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">browserSyncInit</span>(<span class="params">baseDir, files, browser</span>) </span>&#123;</span><br><span class="line">  browser = browser === <span class="literal">undefined</span> ? <span class="string">&#x27;default&#x27;</span> : browser;</span><br><span class="line"></span><br><span class="line">  browserSync.instance = browserSync.init(files, &#123;</span><br><span class="line">    startPath: <span class="string">&#x27;/django_templates/base.html&#x27;</span>,</span><br><span class="line">    server: &#123;</span><br><span class="line">      baseDir: baseDir,</span><br><span class="line">      middleware: proxyMiddleware</span><br><span class="line">    &#125;,</span><br><span class="line">    browser: browser</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">&#x27;serve&#x27;</span>, [<span class="string">&#x27;watch&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  browserSyncInit([</span><br><span class="line">    <span class="string">&#x27;app&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;.tmp&#x27;</span></span><br><span class="line">  ], [</span><br><span class="line">    <span class="string">&#x27;app/*.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/styles/**/*.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;.tmp/styles/**/*.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/scripts/**/*.js&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/partials/**/*.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;app/janceChun/images/**/*&#x27;</span></span><br><span class="line">  ]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="走过的弯路"><a href="#走过的弯路" class="headerlink" title="走过的弯路"></a>走过的弯路</h2><p>采用<code>gulp-webserver</code> 搭建服务,自己mock返回数据(相比以上nodejs搭建的的方法,你要自己mock很多后端api数据,麻烦了很多)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> webserver = <span class="built_in">require</span>(<span class="string">&#x27;gulp-webserver&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mockBackend</span>(<span class="params">res, json</span>) </span>&#123;</span><br><span class="line">  res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">  res.end(<span class="built_in">JSON</span>.stringify(json));</span><br><span class="line">&#125;</span><br><span class="line">gulp.task(<span class="string">&#x27;wl&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> json;</span><br><span class="line">  gulp.src(<span class="string">&#x27;app/&#x27;</span>)</span><br><span class="line">    .pipe(webserver(&#123;</span><br><span class="line">      livereload: <span class="literal">false</span>,</span><br><span class="line">      open: <span class="literal">true</span>,</span><br><span class="line">      directoryListing: &#123;</span><br><span class="line">        enable: <span class="literal">true</span>,</span><br><span class="line">        path: <span class="string">&#x27;app/&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      host: <span class="string">&#x27;0.0.0.0&#x27;</span>,</span><br><span class="line">      port: <span class="number">6789</span>,</span><br><span class="line">      <span class="comment">// 这里是关键！</span></span><br><span class="line">      middleware: <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(req.url);</span><br><span class="line">        <span class="keyword">switch</span> (req.url) &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="string">&#x27;/auth/login/&#x27;</span>:</span><br><span class="line">            json = <span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">&#x27;./stub_server_data/auth/auth.json&#x27;</span>));</span><br><span class="line">            mockBackend(res, json.login);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        next();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/08/30/2016-08-30-jekyll/" data-id="ckh9ck9st0018lvy4axz42mgz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-15-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/07/15/2016-07-15-jekyll/" class="article-date">
-  <time datetime="2016-07-14T16:00:00.000Z" itemprop="datePublished">2016-07-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/svn/">svn</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2016/07/15/2016-07-15-jekyll/">svn 超级实用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>svn log -r version -v<br>查看该版本的提交修改文件路径信息(Changed paths:XXX.*)</li>
-<li>svn log | sed -n ‘/USERNAME/,/—–$/ p’<br>查看该用户USERNAME,提交的xinx</li>
-<li>svn diff -c version<br>查看该版本的提交文件修改详情</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/07/15/2016-07-15-jekyll/" data-id="ckh9ck9ss0015lvy4fq3m8xjr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-01-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="../../2016/07/01/2016-07-01-jekyll/" class="article-date">
-  <time datetime="2016-06-30T16:00:00.000Z" itemprop="datePublished">2016-07-01</time>
+    <a href="../../2017/01/09/2017-01-09/" class="article-date">
+  <time datetime="2017-01-08T16:00:00.000Z" itemprop="datePublished">2017-01-09</time>
 </a>
     
   <div class="article-category">
@@ -290,7 +216,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="../../2016/07/01/2016-07-01-jekyll/">docker cron任务以及常见问题</a>
+      <a class="article-title" href="../../2017/01/09/2017-01-09/">docker telegraf grafana实践</a>
     </h1>
   
 
@@ -298,19 +224,138 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>关于cron<br>一般来说cron预设有三个地方会有执行脚本设定档,分别为:<br><code>/etc/crontab</code>  crontab 会执行的设定档<br><code>/etc/cron.d/*</code> cron 会执行的设定档<br><code>/var/spool/cron/*</code>  crontab -e  存放的位置<br>一般执行顺序是<code>/etc/cron.d/</code>优先级最高,<code>/etc/cron.d/*</code>次之,<code>/var/spool/cron/*</code>最后.<br>而且防止<code>/etc/cron.d/</code>的配置文件一般<code>* * * * * root bash xxx.sh</code>,<br><code>/var/spool/cron/*</code>则为<code>* * * * * xxx.sh</code>,并且xxx.sh必须具有执行权限 </li>
-<li>当cron执行错误的时候如果系统有邮件发送功能,你会收到cron运行出错的信息</li>
-<li>docker 配置,只要在CMD 的时候启动cron就行了,把你的cron配置放置在<code>/etc/cron.d/</code>下<br>或者crontab crontabconfig就可以啦</li>
-</ol>
+        <h2 id="docker-telegraf-grafana实践"><a href="#docker-telegraf-grafana实践" class="headerlink" title="docker telegraf grafana实践"></a>docker telegraf grafana实践</h2><h3 id="telegraf"><a href="#telegraf" class="headerlink" title="telegraf"></a>telegraf</h3><p> 1.了解数据来源<br> telegrad 的docker插件是采集<a target="_blank" rel="noopener" href="https://github.com/docker/engine-api">docker engine-api</a>的状态,<a target="_blank" rel="noopener" href="https://godoc.org/github.com/docker/engine-api">相关文档说明</a>以及<a target="_blank" rel="noopener" href="https://godoc.org/github.com/docker/engine-api/types#Stats">状态类型说明</a>,<br> 其实就是通过GET /containers/(id or name)/stats.获取相关数据.在linux下你可以通过<br> curl –unix-socket /var/run/docker.sock http:/containers/(id or name)/stats来查看相关数据.<br> 2.数据单位<br> 有了上面知道数据的来源你是不是还在纠结数据的单位,比如为什么cpu值是纳秒?我们怎么转换成核?<br> 经过实践发现他记录的是<br> (待续…)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jancechun.github.io/janceChun/2016/07/01/2016-07-01-jekyll/" data-id="ckh9ck9sr0012lvy4g3vihv9f" class="article-share-link">Share</a>
+      <a data-url="https://jancechun.github.io/janceChun/2017/01/09/2017-01-09/" data-id="ckhc1w6is001tihy495l75olo" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-01-08" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2017/01/08/2017-01-08/" class="article-date">
+  <time datetime="2017-01-07T16:00:00.000Z" itemprop="datePublished">2017-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/grafana/">grafana</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2017/01/08/2017-01-08/">grafana AMD</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>grafana AMD 配置</p>
+<p>经过测试，基本放在<br>public/app<br>public/vendor<br>public/plugins<br>这三个目录下都能被引入</p>
+<p>采用common.js ：写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([], function () &#123;</span><br><span class="line">  &quot;use strict&quot;;</span><br><span class="line">  function getValue() &#123;</span><br><span class="line">    console.log(&#39;getValue plugins 111&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;getValue:getValue&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后在要引用的dashaboards/a.js里面写上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.import(&#39;plugins&#x2F;common&#39;).then(function(m)&#123;</span><br><span class="line">  m.getValue();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>就可以引用了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/01/08/2017-01-08/" data-id="ckhc1w6ir001rihy4blqtahq0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-01-07" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="../../2017/01/07/2017-01-07/" class="article-date">
+  <time datetime="2017-01-06T16:00:00.000Z" itemprop="datePublished">2017-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2017/01/07/2017-01-07/">js 代码风格标准</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Jslint（检测工具）有以下几种"><a href="#Jslint（检测工具）有以下几种" class="headerlink" title="Jslint（检测工具）有以下几种"></a>Jslint（检测工具）有以下几种</h3><h4 id="jslint"><a href="#jslint" class="headerlink" title="jslint "></a>jslint </h4><pre><code>优点：默认配置好，无需自己再重新定义
+缺点：
+有限的配置选项，很多规则不能禁用
+规范严格，凡是不符合都会有警告
+扩展性差
+无法根据错误定位到对应的规则</code></pre>
+<h3 id="jshint"><a href="#jshint" class="headerlink" title="jshint "></a>jshint </h3><pre><code>优点：
+1.    有了很多参数可以配置
+2.    支持配置文件，方便使用
+3.    支持了一些常用类库
+4.    支持了基本的ES6
+缺点：
+1.    不支持自定义规则
+2.    无法根据错误定位到对应的规则</code></pre>
+<h4 id="eslint"><a href="#eslint" class="headerlink" title="eslint "></a>eslint </h4><pre><code>优点：
+1.    默认规则里面包含了JSLint和JSHint的规则，易于迁移
+2.    可配置为警告和错误两个等级，或者直接禁用掉
+3.    支持插件扩展
+4.    可以自定义规则
+5.    可以根据错误定位到对应的规则
+6.    支持ES6
+7.    唯一一个支持JSX的工具
+8.    文档详细 
+缺点：
+1.    需要进行一些自定义配置
+2.    慢</code></pre>
+<h3 id="Js-style-guides-检测标准"><a href="#Js-style-guides-检测标准" class="headerlink" title="Js style guides (检测标准)"></a>Js style guides (检测标准)</h3><h4 id="airbnb"><a href="#airbnb" class="headerlink" title="airbnb"></a>airbnb</h4><p>文档react 齐全 ，规则覆盖面广， 支持react<br> it covers all aspects of coding in JavaScript right from guidelines for variable declaration, functions, events, test code to performance related tips.</p>
+<h4 id="google"><a href="#google" class="headerlink" title="google"></a>google</h4><p>规则覆盖不如adribnb </p>
+<h4 id="strandard"><a href="#strandard" class="headerlink" title="strandard"></a>strandard</h4><p>精简 ，规则覆盖少 ,各idea都有配置文档</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p> 在js方面使用eslint 检测工具，adribnb<br>检测标准</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jancechun.github.io/janceChun/2017/01/07/2017-01-07/" data-id="ckhc1w6iq001mihy42t3gfqhx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li></ul>
 
     </footer>
   </div>
@@ -323,7 +368,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../3/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../5/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="../3/">&amp;laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><span class="space">&hellip;</span><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../5/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -334,7 +379,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry/">Sentry</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Sentry-docker/">Sentry docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/WebStorm/">WebStorm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/charles-https/">charles https</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/css/">css</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/grafana/">grafana</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/html5/">html5</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/influxdb/">influxdb</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/svn/">svn</a></li></ul>
     </div>
   </div>
 
@@ -344,7 +389,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">JavaScript数据类型与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WebStorm/" rel="tag">WebStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/angular/" rel="tag">angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/charles/" rel="tag">charles</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" rel="tag">css垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" rel="tag">css文字对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" rel="tag">docker telegraf grafana实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/font/" rel="tag">font</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/grafana/" rel="tag">grafana</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/html5-download/" rel="tag">html5 download</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/htpps/" rel="tag">htpps</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http  缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/http-%E7%BC%93%E5%AD%98/" rel="tag">http 缓存</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/influxdb-non-negative-derivative/" rel="tag">influxdb non_negative_derivative</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" rel="tag">jekyll 迁移到 hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js-promise/" rel="tag">js promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" rel="tag">js数字溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/mysql-brew/" rel="tag">mysql brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/npm-registry/" rel="tag">npm registry</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" rel="tag">前后端分离</a></li></ul>
     </div>
   </div>
 
@@ -354,7 +399,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 10px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 10px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
+      <a href="../../tags/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">JavaScript数据类型与数据结构</a> <a href="../../tags/Sentry/" style="font-size: 13.33px;">Sentry</a> <a href="../../tags/WebStorm/" style="font-size: 10px;">WebStorm</a> <a href="../../tags/ajax/" style="font-size: 16.67px;">ajax</a> <a href="../../tags/angular/" style="font-size: 20px;">angular</a> <a href="../../tags/charles/" style="font-size: 10px;">charles</a> <a href="../../tags/cron/" style="font-size: 10px;">cron</a> <a href="../../tags/css/" style="font-size: 13.33px;">css</a> <a href="../../tags/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" style="font-size: 10px;">css垂直居中</a> <a href="../../tags/css%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90/" style="font-size: 10px;">css文字对齐</a> <a href="../../tags/docker/" style="font-size: 13.33px;">docker</a> <a href="../../tags/docker-telegraf-grafana%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">docker telegraf grafana实践</a> <a href="../../tags/font/" style="font-size: 10px;">font</a> <a href="../../tags/git/" style="font-size: 10px;">git</a> <a href="../../tags/grafana/" style="font-size: 13.33px;">grafana</a> <a href="../../tags/html5-download/" style="font-size: 10px;">html5 download</a> <a href="../../tags/htpps/" style="font-size: 10px;">htpps</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http  缓存</a> <a href="../../tags/http-%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http 缓存</a> <a href="../../tags/influxdb-non-negative-derivative/" style="font-size: 10px;">influxdb non_negative_derivative</a> <a href="../../tags/javascript/" style="font-size: 13.33px;">javascript</a> <a href="../../tags/jekyll-%E8%BF%81%E7%A7%BB%E5%88%B0-hexo/" style="font-size: 10px;">jekyll 迁移到 hexo</a> <a href="../../tags/js-promise/" style="font-size: 10px;">js promise</a> <a href="../../tags/js%E6%95%B0%E5%AD%97%E6%BA%A2%E5%87%BA/" style="font-size: 10px;">js数字溢出</a> <a href="../../tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="../../tags/mysql-brew/" style="font-size: 10px;">mysql brew</a> <a href="../../tags/nodejs/" style="font-size: 16.67px;">nodejs</a> <a href="../../tags/npm/" style="font-size: 10px;">npm</a> <a href="../../tags/npm-registry/" style="font-size: 13.33px;">npm registry</a> <a href="../../tags/python/" style="font-size: 16.67px;">python</a> <a href="../../tags/svn/" style="font-size: 10px;">svn</a> <a href="../../tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" style="font-size: 10px;">前后端分离</a>
     </div>
   </div>
 
@@ -363,7 +408,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -376,23 +421,23 @@
       <ul>
         
           <li>
-            <a href="../../2018/04/03/2018-04-03/">js 事件复习</a>
+            <a href="../../2019/12/04/2019-12-04/">常见问题CSS设置</a>
           </li>
         
           <li>
-            <a href="../../2017/08/30/2017-08-30/">css特殊字体处理</a>
+            <a href="../../2018/10/18/2018-10-18/">docker sentry 配置企业ldap</a>
           </li>
         
           <li>
-            <a href="../../2017/08/24/2017-08-24/">charles4.0 https证书问题</a>
+            <a href="../../2018/10/17/2018-10-17/">Sentry部署</a>
           </li>
         
           <li>
-            <a href="../../2017/05/05/2017-05-05/">V8 简介翻译</a>
+            <a href="../../2018/09/01/2018-08-32/">验证码识别入门</a>
           </li>
         
           <li>
-            <a href="../../2017/03/21/2017-03-21/">发布第一个开源 JavaScript Library</a>
+            <a href="../../2018/08/31/2018-08-31/">Scrapy 入门</a>
           </li>
         
       </ul>
@@ -417,7 +462,7 @@
   
     <a href="../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="../../janceChun/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
