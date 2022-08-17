@@ -17,7 +17,7 @@ Here are some ideas to get you started:
 
 ## My Github Status 🦸
 
-![janceChun's GitHub stats](https://github-readme-stats.vercel.app/api?username=janceChun&show_icons=true&theme=radical)
+![janceChun's GitHub stats](https://github-readme-stats.vercel.app/api?username=janceChun&include_all_commits=true&bg_color=180,003190,03023c&title_color=fff&text_color=fff)
 
 
 
