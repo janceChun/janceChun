@@ -17,10 +17,7 @@ Here are some ideas to get you started:
 
 ## My Github Status 🦸
 
-![](https://activity-graph.herokuapp.com/graph?username=janceChun&theme=github)
-
-![robbiemie's GitHub stats](https://github-readme-stats.vercel.app/api?username=janceChun&show_icons=true&theme=radical)
-
+![janceChun's GitHub stats](https://github-readme-stats.vercel.app/api?username=janceChun&show_icons=true&theme=radical)
 
 
 
