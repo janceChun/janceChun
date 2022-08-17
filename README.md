@@ -14,3 +14,19 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+## My Github Status 🦸
+
+![](https://activity-graph.herokuapp.com/graph?username=janceChun&theme=github)
+
+![robbiemie's GitHub stats](https://github-readme-stats.vercel.app/api?username=janceChun&show_icons=true&theme=radical)
+
+
+
+
+
+## Thank you for the visit.
+
+![](http://profile-counter.glitch.me/janceChun/count.svg)
+
+Please give a Star if you like.
